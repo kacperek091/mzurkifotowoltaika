@@ -1,0 +1,3326 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Słoneczne Mzurki – Energia Solarna dla Naszej Wsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off-white: #f8f9fb;
+  --light-gray: #eef0f4;
+  --mid-gray: #c8cdd8;
+  --dark-gray: #6b7280;
+  --black: #0a0b0d;
+  --deep-blue: #0d1b3e;
+  --navy: #1a2e5a;
+  --blue: #1e4fc2;
+  --sky: #4a9eff;
+  --gold: #f5a623;
+  --amber: #ff8c00;
+  --sun: #ffcc00;
+  --sunrise: #ff6b35;
+  --green: #22c55e;
+  --r: 0.5rem;
+  --r2: 1rem;
+  --r3: 1.5rem;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  /* Theme tokens - light mode defaults */
+  --bg: #ffffff;
+  --bg2: #f8f9fb;
+  --bg3: #eef0f4;
+  --text: #0a0b0d;
+  --text2: #6b7280;
+  --border: #eef0f4;
+  --card-bg: #ffffff;
+  --input-bg: #f8f9fb;
+  --input-border: #c8cdd8;
+  --heading: #0d1b3e;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+  --white: #1a1d2e;
+  --off-white: #141624;
+  --light-gray: #252840;
+  --mid-gray: #3a3f5c;
+  --dark-gray: #9ca3b8;
+  --black: #e8eaf2;
+  --deep-blue: #a8b8f0;
+  --navy: #7a93e0;
+  --blue: #6b9fff;
+  --sky: #7ec8ff;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.6);
+  --bg: #141624;
+  --bg2: #1a1d2e;
+  --bg3: #252840;
+  --text: #e8eaf2;
+  --text2: #9ca3b8;
+  --border: #252840;
+  --card-bg: #1e2135;
+  --input-bg: rgba(255,255,255,0.06);
+  --input-border: rgba(255,255,255,0.12);
+  --heading: #c8d8ff;
+}
+body.dark { background:#141624; color:#e8eaf2; }
+body.dark #o-mzurkach,
+body.dark #mapa,
+body.dark #dofinansowanie,
+body.dark #faq { background:#141624; }
+body.dark #technologia,
+body.dark #kalkulator,
+body.dark #harmonogram,
+body.dark #wykresy,
+body.dark #realizacje { background:#1a1d2e; }
+body.dark .section-title { color:#c8d8ff; }
+body.dark .section-desc { color:#9ca3b8; }
+body.dark .timeline-block h4 { color:#c8d8ff; }
+body.dark .timeline-block p { color:#9ca3b8; }
+body.dark .spec-item { background:#252840; border-color:#3a3f5c; }
+body.dark .spec-item .spec-val { color:#c8d8ff; }
+body.dark .comparison-section { background:#1e2135; }
+body.dark .comparison-section h3 { color:#c8d8ff; }
+body.dark .compare-label { color:#c8d8ff; }
+body.dark .compare-slider { background:linear-gradient(to right,var(--sky) var(--pct,50%),#3a3f5c var(--pct,50%)); }
+body.dark .compare-slider::-webkit-slider-thumb { background:#7ec8ff; }
+body.dark .compare-val { color:#7ec8ff; }
+body.dark #calc-cost,body.dark #calc-kwh { color:#c8d8ff; }
+body.dark div[style*="background:var(--off-white)"] { background:#252840!important; }
+body.dark .about-visual { background:linear-gradient(135deg,#0a0e1a,#0f1628); }
+body.dark .tech-tab { background:#252840; border-color:#3a3f5c; color:#9ca3b8; }
+body.dark .tech-tab.active { background:#1e4fc2; border-color:#1e4fc2; color:#fff; }
+body.dark .tech-tab:hover:not(.active) { background:#3a3f5c; }
+body.dark .tech-panel-info h3 { color:#c8d8ff; }
+body.dark .tech-panel-info p { color:#9ca3b8; }
+body.dark .calc-form { background:#1e2135; }
+body.dark .calc-form h3 { color:#c8d8ff; }
+body.dark .form-group label { color:#c8d8ff; }
+body.dark .form-group select { background:#252840; border-color:#3a3f5c; color:#e8eaf2; }
+body.dark .range-display { color:#9ca3b8; }
+body.dark .day-info-card { background:#252840; }
+body.dark .day-info-card.active { background:#1e2135; }
+body.dark .day-info-card .di-power { color:#c8d8ff; }
+body.dark .day-info-card .di-desc { color:#9ca3b8; }
+body.dark .day-canvas-wrap { background:#1e2135; }
+body.dark .day-btn { background:#252840; color:#e8eaf2; }
+body.dark .day-btn:hover,.day-btn.playing { background:#1e4fc2; color:#fff; }
+body.dark .day-speed { color:#9ca3b8; }
+body.dark .chart-card { background:#1e2135; }
+body.dark .chart-card h3 { color:#c8d8ff; }
+body.dark .chart-tab { background:#252840; color:#9ca3b8; }
+body.dark .chart-tab.active { background:#1e4fc2; color:#fff; }
+body.dark .faq-item { border-color:#252840; }
+body.dark .faq-question { color:#c8d8ff; }
+body.dark .faq-answer { color:#9ca3b8; }
+body.dark .faq-icon { background:#252840; color:#c8d8ff; }
+body.dark .faq-item.open .faq-icon { background:#1e4fc2; color:#fff; }
+body.dark .case-card { background:#1e2135; }
+body.dark .case-body h4 { color:#c8d8ff; }
+body.dark .case-body p { color:#9ca3b8; }
+body.dark .case-tag { background:#252840; }
+body.dark .case-metric .m-val { color:#c8d8ff; }
+body.dark .case-metric .m-lbl { color:#9ca3b8; }
+body.dark .grant-card { border-color:#252840; }
+body.dark .grant-card h4 { color:#c8d8ff; }
+body.dark .grant-card p { color:#9ca3b8; }
+body.dark .grant-icon { background:#252840; }
+body.dark .grant-amount small { color:#9ca3b8; }
+body.dark #navbar.scrolled { background:rgba(20,22,36,0.95); }
+body.dark #navbar.scrolled .nav-logo { color:#c8d8ff; }
+body.dark #navbar.scrolled .nav-links a { color:#c8d8ff; }
+body.dark #navbar.scrolled .nav-links a:hover { background:#252840; }
+body.dark #navbar.scrolled #hamburger span { background:#c8d8ff; }
+body.dark .tooltip-text { background:#1e2135; border:1px solid #3a3f5c; }
+body.dark .spec-item .spec-label { color:#9ca3b8; }
+body.dark ::-webkit-scrollbar-track { background:#1a1d2e; }
+body.dark ::-webkit-scrollbar-thumb { background:#3a3f5c; }
+/* Smooth theme transition */
+body, body * { transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+ul{list-style:none}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--light-gray)}
+::-webkit-scrollbar-thumb{background:var(--deep-blue);border-radius:3px}
+
+/* ===== NAVIGATION ===== */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:var(--transition);
+}
+#navbar.scrolled{
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(16px);
+  box-shadow:0 2px 20px rgba(0,0,0,0.08);
+  padding:0.7rem 2rem;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:0.6rem;
+  font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;
+  color:var(--white);transition:color 0.3s;
+}
+#navbar.scrolled .nav-logo{color:var(--deep-blue)}
+.nav-logo .sun-icon{
+  width:36px;height:36px;
+  background:var(--sun);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:transform 0.3s;
+  box-shadow:0 0 0 0 rgba(255,204,0,0.5);
+}
+.nav-logo .sun-icon:hover,.nav-logo .sun-icon.spinning{animation:spinSun 0.8s ease}
+@keyframes spinSun{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.3)}100%{transform:rotate(360deg) scale(1)}}
+.sun-icon.pulse{animation:pulseSun 1.5s infinite}
+@keyframes pulseSun{0%,100%{box-shadow:0 0 0 0 rgba(255,204,0,0.5)}50%{box-shadow:0 0 0 12px rgba(255,204,0,0)}}
+
+.nav-links{
+  display:flex;align-items:center;gap:0.2rem;
+}
+.nav-links a{
+  padding:0.5rem 0.8rem;
+  border-radius:var(--r);
+  font-size:0.85rem;font-weight:500;
+  color:rgba(255,255,255,0.85);
+  transition:var(--transition);
+}
+#navbar.scrolled .nav-links a{color:var(--deep-blue)}
+.nav-links a:hover{
+  background:rgba(255,255,255,0.15);
+  color:var(--white);
+}
+#navbar.scrolled .nav-links a:hover{
+  background:var(--light-gray);
+  color:var(--deep-blue);
+}
+.nav-cta{
+  background:var(--sun)!important;
+  color:var(--black)!important;
+  font-weight:700!important;
+  padding:0.5rem 1.2rem!important;
+}
+.nav-cta:hover{background:var(--amber)!important;transform:translateY(-1px)}
+
+#hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+#hamburger span{width:24px;height:2px;background:var(--white);transition:var(--transition);border-radius:2px}
+#navbar.scrolled #hamburger span{background:var(--deep-blue)}
+body.dark #navbar.scrolled #hamburger span{background:#c8d8ff}
+#mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--deep-blue);z-index:999;
+  flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;
+  overflow-y:auto;
+}
+body.dark #mobile-menu{background:#0f1225}
+#mobile-menu.open{display:flex}
+#mobile-menu a{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--white);transition:color 0.2s}
+body.dark #mobile-menu a{color:#e8eaf2}
+#mobile-menu a:hover{color:var(--sun)}
+#close-mobile{position:absolute;top:2rem;right:2rem;font-size:2rem;color:var(--white);cursor:pointer}
+.nav-right{display:flex;align-items:center;gap:0.5rem}
+
+/* ===== HERO ===== */
+#hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#sky-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  z-index:0;
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:2rem;
+  max-width:900px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:100px;
+  padding:0.4rem 1rem;
+  font-size:0.85rem;
+  color:var(--white);
+  margin-bottom:1.5rem;
+  animation:fadeInDown 0.8s ease both;
+}
+.hero-badge .dot{
+  width:8px;height:8px;
+  background:var(--green);
+  border-radius:50%;
+  animation:blinkDot 2s infinite;
+}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-title{
+  font-size:clamp(2.8rem,7vw,6rem);
+  font-weight:800;
+  color:var(--white);
+  text-shadow:0 2px 40px rgba(0,0,0,0.3);
+  line-height:1.05;
+  margin-bottom:1rem;
+  animation:fadeInUp 0.8s 0.2s ease both;
+}
+.hero-title span{
+  background:linear-gradient(135deg,var(--sun),var(--amber));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-subtitle{
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:rgba(255,255,255,0.85);
+  max-width:620px;
+  margin:0 auto 2.5rem;
+  animation:fadeInUp 0.8s 0.4s ease both;
+}
+.hero-btns{
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  flex-wrap:wrap;
+  animation:fadeInUp 0.8s 0.6s ease both;
+}
+.btn-primary{
+  background:var(--sun);
+  color:var(--black);
+  padding:0.85rem 2rem;
+  border-radius:var(--r2);
+  font-family:'Syne',sans-serif;
+  font-size:0.95rem;font-weight:700;
+  transition:var(--transition);
+  box-shadow:0 4px 20px rgba(255,204,0,0.4);
+}
+.btn-primary:hover{
+  background:var(--amber);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(255,140,0,0.5);
+}
+.btn-secondary{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,0.4);
+  color:var(--white);
+  padding:0.85rem 2rem;
+  border-radius:var(--r2);
+  font-family:'Syne',sans-serif;
+  font-size:0.95rem;font-weight:600;
+  transition:var(--transition);
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.25)}
+
+.hero-stats{
+  position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:3rem;
+  animation:fadeInUp 0.8s 0.8s ease both;
+  z-index:2;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  color:var(--white);
+}
+.hero-stat .lbl{font-size:0.75rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.08em}
+
+.scroll-indicator{
+  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.3rem;
+  color:rgba(255,255,255,0.6);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+  z-index:2;animation:bounce 2s infinite;
+}
+.scroll-indicator::after{
+  content:'';width:1.5px;height:32px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.6),transparent);
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== SECTION COMMON ===== */
+section{padding:6rem 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.75rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:1rem;
+}
+.section-label::before{
+  content:'';width:24px;height:2px;
+  background:var(--blue);border-radius:1px;
+}
+.section-title{
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:800;
+  color:var(--deep-blue);
+  margin-bottom:1rem;
+}
+.section-desc{
+  font-size:1.05rem;color:var(--dark-gray);
+  max-width:680px;line-height:1.7;
+}
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== ABOUT SECTION ===== */
+#o-mzurkach{background:var(--white)}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  margin-top:3rem;
+}
+.about-visual{
+  position:relative;
+  border-radius:var(--r3);
+  overflow:hidden;
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--deep-blue),var(--navy));
+  box-shadow:var(--shadow-lg);
+}
+.village-illustration{
+  width:100%;height:100%;
+  position:relative;
+  overflow:hidden;
+}
+.timeline-block{
+  border-left:3px solid var(--sky);
+  padding-left:1.5rem;
+  margin-bottom:2rem;
+  position:relative;
+}
+.timeline-block::before{
+  content:'';
+  position:absolute;left:-8px;top:4px;
+  width:13px;height:13px;
+  background:var(--sky);border-radius:50%;
+  border:3px solid var(--white);
+  box-shadow:0 0 0 3px var(--sky);
+}
+.timeline-block .year{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.1em;
+  color:var(--sky);text-transform:uppercase;margin-bottom:0.3rem;
+}
+.timeline-block h4{font-size:1rem;font-weight:700;color:var(--deep-blue);margin-bottom:0.3rem}
+.timeline-block p{font-size:0.9rem;color:var(--dark-gray)}
+
+/* ===== TECHNOLOGY SECTION ===== */
+#technologia{background:var(--off-white)}
+.tech-tabs{
+  display:flex;gap:0.5rem;
+  margin:2rem 0;
+  flex-wrap:wrap;
+}
+.tech-tab{
+  padding:0.6rem 1.2rem;
+  border-radius:var(--r2);
+  background:var(--white);
+  border:1.5px solid var(--mid-gray);
+  font-size:0.85rem;font-weight:600;
+  color:var(--dark-gray);
+  transition:var(--transition);cursor:pointer;
+}
+.tech-tab.active{
+  background:var(--deep-blue);
+  border-color:var(--deep-blue);
+  color:var(--white);
+  box-shadow:0 4px 12px rgba(13,27,62,0.2);
+}
+.tech-tab:hover:not(.active){background:var(--light-gray);border-color:var(--navy)}
+.tech-panels{}
+.tech-panel{display:none}
+.tech-panel.active{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:center}
+.tech-panel-info h3{font-size:1.8rem;font-weight:800;color:var(--deep-blue);margin-bottom:1rem}
+.tech-panel-info p{color:var(--dark-gray);line-height:1.7;margin-bottom:1.5rem}
+.tech-specs{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.spec-item{
+  background:var(--white);
+  border-radius:var(--r);
+  padding:0.8rem 1rem;
+  border:1px solid var(--light-gray);
+}
+.spec-item .spec-label{font-size:0.75rem;color:var(--dark-gray);text-transform:uppercase;letter-spacing:0.05em}
+.spec-item .spec-val{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--deep-blue)}
+.tech-visual{
+  background:var(--deep-blue);
+  border-radius:var(--r3);
+  padding:2rem;
+  min-height:320px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+
+/* Comparison Slider */
+.comparison-section{
+  margin-top:4rem;
+  background:var(--white);
+  border-radius:var(--r3);
+  padding:2.5rem;
+  box-shadow:var(--shadow);
+}
+.comparison-section h3{font-size:1.4rem;font-weight:800;color:var(--deep-blue);margin-bottom:1.5rem}
+.compare-row{
+  display:grid;grid-template-columns:160px 1fr 80px;
+  align-items:center;gap:1rem;margin-bottom:1.2rem;
+}
+.compare-label{font-size:0.85rem;font-weight:600;color:var(--deep-blue)}
+.compare-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:6px;
+  background:var(--light-gray);
+  border-radius:3px;outline:none;cursor:pointer;
+}
+.compare-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--deep-blue);
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  transition:transform 0.2s;
+}
+.compare-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.compare-val{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--blue);text-align:right;
+}
+
+/* ===== INTERACTIVE MAP ===== */
+#mapa{background:var(--white)}
+.map-container{
+  position:relative;
+  border-radius:var(--r3);
+  overflow:hidden;
+  background:linear-gradient(180deg,#87ceeb 0%,#98e4a0 60%,#5a8a3a 100%);
+  margin-top:2.5rem;
+  box-shadow:var(--shadow-lg);
+  min-height:500px;
+}
+#village-map{width:100%;min-height:500px}
+.map-legend{
+  position:absolute;bottom:1.5rem;left:1.5rem;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(8px);
+  border-radius:var(--r2);
+  padding:1rem 1.2rem;
+  box-shadow:var(--shadow);
+}
+.map-legend h5{font-size:0.8rem;font-weight:700;color:var(--deep-blue);margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.07em}
+.legend-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--dark-gray);margin-bottom:0.4rem}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.house-popup{
+  position:absolute;
+  background:var(--white);
+  border-radius:var(--r2);
+  padding:1.2rem;
+  min-width:220px;
+  box-shadow:var(--shadow-lg);
+  pointer-events:none;
+  opacity:0;transition:opacity 0.2s;
+  z-index:10;
+}
+.house-popup.show{opacity:1}
+.house-popup h4{font-size:1rem;font-weight:700;color:var(--deep-blue);margin-bottom:0.5rem}
+.house-popup .popup-stat{
+  display:flex;justify-content:space-between;
+  font-size:0.82rem;padding:0.3rem 0;
+  border-bottom:1px solid var(--light-gray);
+  color:var(--dark-gray);
+}
+.house-popup .popup-stat:last-child{border:none}
+.house-popup .popup-stat span:last-child{font-weight:600;color:var(--deep-blue)}
+
+/* ===== SIMULATOR ===== */
+#kalkulator{background:var(--off-white)}
+.calculator-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  margin-top:2.5rem;
+}
+.calc-form{
+  background:var(--white);
+  border-radius:var(--r3);
+  padding:2rem;
+  box-shadow:var(--shadow);
+}
+.calc-form h3{font-size:1.3rem;font-weight:800;color:var(--deep-blue);margin-bottom:1.5rem}
+.form-group{margin-bottom:1.3rem}
+.form-group label{
+  display:block;font-size:0.85rem;font-weight:600;
+  color:var(--deep-blue);margin-bottom:0.5rem;
+}
+.form-group input[type=range]{
+  width:100%;height:6px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(to right,var(--deep-blue) var(--pct,50%),var(--light-gray) var(--pct,50%));
+  border-radius:3px;outline:none;cursor:pointer;margin-bottom:0.3rem;
+}
+.form-group input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;
+  border-radius:50%;background:var(--deep-blue);cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);transition:transform 0.2s;
+}
+.form-group input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.range-display{
+  display:flex;justify-content:space-between;
+  font-size:0.8rem;color:var(--dark-gray);
+}
+.range-display .current{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--blue);
+}
+.form-group select{
+  width:100%;padding:0.7rem 1rem;
+  border:1.5px solid var(--mid-gray);
+  border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  color:var(--deep-blue);background:var(--white);
+  outline:none;cursor:pointer;transition:border-color 0.2s;
+}
+.form-group select:focus{border-color:var(--blue)}
+
+.calc-results{
+  background:var(--deep-blue);
+  border-radius:var(--r3);
+  padding:2rem;
+  color:var(--white);
+}
+.calc-results h3{font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;color:var(--white)}
+.result-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;
+}
+.result-card{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--r2);padding:1rem;
+}
+.result-card .r-num{
+  font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;
+  color:var(--sun);
+}
+.result-card .r-unit{font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-left:0.2rem}
+.result-card .r-label{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.2rem}
+
+.chart-wrap{
+  background:rgba(255,255,255,0.05);
+  border-radius:var(--r2);padding:1rem;
+  margin-top:1rem;
+}
+.chart-wrap h4{font-size:0.85rem;font-weight:600;margin-bottom:0.8rem;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.08em}
+#productionChart{width:100%;height:120px}
+#savingsChart{width:100%;height:80px;margin-top:0.8rem}
+
+/* ===== TIMELINE DAY ===== */
+#harmonogram{background:var(--white)}
+.day-timeline{
+  position:relative;
+  margin-top:3rem;
+  padding:2rem 0;
+}
+.timeline-track{
+  position:relative;
+  height:8px;
+  background:var(--light-gray);
+  border-radius:4px;
+  margin-bottom:3rem;
+}
+.timeline-progress{
+  position:absolute;top:0;left:0;height:100%;
+  background:linear-gradient(90deg,var(--sunrise),var(--sun),var(--amber),var(--sky),var(--navy));
+  border-radius:4px;
+  width:0%;transition:width 0.5s ease;
+}
+.timeline-thumb{
+  position:absolute;top:-8px;
+  width:24px;height:24px;
+  background:var(--sun);border-radius:50%;
+  cursor:pointer;transform:translateX(-50%);
+  box-shadow:0 2px 12px rgba(255,204,0,0.5);
+  border:3px solid var(--white);
+  transition:left 0.5s ease;
+}
+.time-markers{
+  display:flex;justify-content:space-between;
+  margin-top:-2rem;margin-bottom:2rem;
+}
+.time-marker{
+  text-align:center;
+  font-size:0.75rem;color:var(--dark-gray);font-weight:500;
+}
+.time-marker.active{color:var(--amber);font-weight:700}
+.day-info-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.5rem;margin-bottom:2rem;
+}
+.day-info-card{
+  background:var(--off-white);
+  border-radius:var(--r2);
+  padding:1.3rem;
+  border-left:3px solid var(--light-gray);
+  transition:var(--transition);
+}
+.day-info-card.active{
+  border-left-color:var(--sun);
+  background:var(--white);
+  box-shadow:var(--shadow);
+  transform:translateY(-2px);
+}
+.day-info-card .di-time{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--dark-gray);margin-bottom:0.4rem}
+.day-info-card .di-power{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--deep-blue)}
+.day-info-card .di-desc{font-size:0.82rem;color:var(--dark-gray);margin-top:0.3rem}
+.day-canvas-wrap{
+  background:var(--off-white);
+  border-radius:var(--r3);padding:1.5rem;
+  box-shadow:var(--shadow);
+}
+#dayChart{width:100%;height:200px}
+.day-btns{
+  display:flex;gap:0.8rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;
+}
+.day-btn{
+  padding:0.55rem 1.2rem;border-radius:var(--r2);
+  background:var(--light-gray);
+  font-size:0.85rem;font-weight:600;color:var(--deep-blue);
+  transition:var(--transition);
+}
+.day-btn:hover{background:var(--deep-blue);color:var(--white)}
+.day-btn.playing{background:var(--deep-blue);color:var(--white)}
+.day-speed{font-size:0.82rem;color:var(--dark-gray);margin-left:auto}
+
+/* ===== CHARTS SECTION ===== */
+#wykresy{background:var(--off-white)}
+.charts-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;margin-top:2rem;
+}
+.chart-card{
+  background:var(--white);border-radius:var(--r3);
+  padding:1.8rem;box-shadow:var(--shadow);
+}
+.chart-card h3{font-size:1rem;font-weight:700;color:var(--deep-blue);margin-bottom:1rem}
+.chart-card canvas{width:100%!important;max-height:220px}
+.chart-tabs{display:flex;gap:0.4rem;margin-bottom:1rem}
+.chart-tab{
+  padding:0.35rem 0.8rem;border-radius:var(--r);
+  font-size:0.78rem;font-weight:600;
+  background:var(--light-gray);color:var(--dark-gray);
+  cursor:pointer;transition:var(--transition);
+}
+.chart-tab.active{background:var(--deep-blue);color:var(--white)}
+
+/* ===== FAQ ===== */
+#faq{background:var(--white)}
+.faq-list{max-width:800px;margin:2.5rem auto 0}
+.faq-item{
+  border-bottom:1.5px solid var(--light-gray);
+  overflow:hidden;
+}
+.faq-question{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 0;cursor:pointer;
+  font-size:1rem;font-weight:600;color:var(--deep-blue);
+  transition:color 0.2s;
+}
+.faq-question:hover{color:var(--blue)}
+.faq-icon{
+  width:28px;height:28px;min-width:28px;
+  border-radius:50%;background:var(--light-gray);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--deep-blue);
+  transition:var(--transition);
+}
+.faq-item.open .faq-icon{background:var(--deep-blue);color:var(--white);transform:rotate(45deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease,padding 0.3s;
+  font-size:0.93rem;color:var(--dark-gray);line-height:1.7;
+}
+.faq-item.open .faq-answer{max-height:300px;padding-bottom:1.3rem}
+
+/* ===== QUIZ ===== */
+#quiz-section{background:var(--deep-blue);padding:5rem 2rem}
+.quiz-card{
+  max-width:700px;margin:0 auto;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--r3);padding:2.5rem;
+  text-align:center;
+}
+.quiz-card .section-label{color:var(--sun)}
+.quiz-card .section-label::before{background:var(--sun)}
+.quiz-card h2{color:var(--white);font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:0.8rem}
+.quiz-card p{color:rgba(255,255,255,0.7);margin-bottom:2rem}
+.quiz-question{
+  font-size:1.1rem;font-weight:600;color:var(--white);
+  margin-bottom:1.5rem;
+}
+.quiz-options{display:grid;gap:0.8rem}
+.quiz-option{
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(255,255,255,0.15);
+  border-radius:var(--r2);padding:0.9rem 1.2rem;
+  text-align:left;color:var(--white);font-size:0.92rem;
+  cursor:pointer;transition:var(--transition);
+}
+.quiz-option:hover{background:rgba(255,255,255,0.15);border-color:var(--sun)}
+.quiz-option.correct{background:rgba(34,197,94,0.2);border-color:var(--green);color:var(--green)}
+.quiz-option.wrong{background:rgba(239,68,68,0.2);border-color:#ef4444;color:#ef4444}
+.quiz-feedback{
+  margin-top:1.2rem;font-size:0.9rem;color:rgba(255,255,255,0.8);
+  min-height:1.4rem;
+}
+.quiz-progress{
+  display:flex;gap:0.5rem;justify-content:center;margin-top:1.5rem;
+}
+.quiz-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.25);transition:background 0.3s;
+}
+.quiz-dot.done{background:var(--green)}
+.quiz-dot.active{background:var(--sun)}
+#quiz-next{
+  margin-top:1.5rem;
+  background:var(--sun);color:var(--black);
+  padding:0.7rem 1.8rem;border-radius:var(--r2);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;
+  display:none;transition:var(--transition);
+}
+#quiz-next:hover{background:var(--amber);transform:translateY(-1px)}
+#quiz-next.show{display:inline-block}
+
+/* ===== CASE STUDIES ===== */
+#realizacje{background:var(--off-white)}
+.cases-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
+}
+.case-card{
+  background:var(--white);border-radius:var(--r3);
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:var(--transition);cursor:pointer;
+}
+.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.case-thumb{
+  height:200px;
+  position:relative;overflow:hidden;
+}
+.case-body{padding:1.5rem}
+.case-tag{
+  display:inline-block;
+  background:var(--light-gray);color:var(--blue);
+  font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.3rem 0.7rem;border-radius:100px;margin-bottom:0.7rem;
+}
+.case-body h4{font-size:1.1rem;font-weight:800;color:var(--deep-blue);margin-bottom:0.5rem}
+.case-body p{font-size:0.85rem;color:var(--dark-gray);line-height:1.6;margin-bottom:1rem}
+.case-metrics{display:flex;gap:1rem}
+.case-metric{text-align:center}
+.case-metric .m-val{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--deep-blue)}
+.case-metric .m-lbl{font-size:0.72rem;color:var(--dark-gray)}
+
+/* ===== GRANTS ===== */
+#dofinansowanie{background:var(--white)}
+.grants-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
+}
+.grant-card{
+  border-radius:var(--r3);padding:2rem;
+  border:1.5px solid var(--light-gray);
+  transition:var(--transition);
+  position:relative;overflow:hidden;
+}
+.grant-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue),var(--sky));
+  transition:height 0.3s;
+}
+.grant-card:hover::before{height:8px}
+.grant-card:hover{border-color:var(--sky);box-shadow:var(--shadow)}
+.grant-icon{
+  width:52px;height:52px;
+  border-radius:var(--r2);
+  background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:1rem;
+}
+.grant-card h4{font-size:1.1rem;font-weight:800;color:var(--deep-blue);margin-bottom:0.5rem}
+.grant-card p{font-size:0.85rem;color:var(--dark-gray);line-height:1.6;margin-bottom:0.8rem}
+.grant-amount{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;
+  color:var(--green);
+}
+.grant-amount small{font-size:0.75rem;font-weight:400;color:var(--dark-gray);font-family:'DM Sans',sans-serif}
+
+/* ===== CONTACT ===== */
+#kontakt{
+  background:linear-gradient(135deg,var(--deep-blue) 0%,var(--navy) 100%);
+  color:var(--white);
+  padding:6rem 2rem;
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;
+  gap:4rem;align-items:start;
+  max-width:1100px;margin:0 auto;
+}
+.contact-info h2{color:var(--white);font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:1rem}
+.contact-info p{color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:2rem}
+.contact-detail{
+  display:flex;align-items:flex-start;gap:1rem;
+  margin-bottom:1.2rem;
+}
+.contact-detail .c-icon{
+  width:40px;height:40px;min-width:40px;
+  border-radius:var(--r);
+  background:rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+}
+.contact-detail .c-text strong{display:block;font-size:0.85rem;font-weight:700;color:var(--white);margin-bottom:0.15rem}
+.contact-detail .c-text span{font-size:0.82rem;color:rgba(255,255,255,0.6)}
+.contact-form{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--r3);
+  padding:2rem;
+}
+.contact-form h3{color:var(--white);margin-bottom:1.5rem}
+.cf-group{margin-bottom:1rem}
+.cf-group label{display:block;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:0.4rem}
+.cf-group input,.cf-group textarea,.cf-group select{
+  width:100%;padding:0.75rem 1rem;
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(255,255,255,0.15);
+  border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  color:var(--white);outline:none;
+  transition:border-color 0.2s;
+}
+.cf-group input::placeholder,.cf-group textarea::placeholder{color:rgba(255,255,255,0.35)}
+.cf-group input:focus,.cf-group textarea:focus{border-color:var(--sky)}
+.cf-group textarea{resize:vertical;min-height:120px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-submit{
+  width:100%;margin-top:0.5rem;
+  background:var(--sun);color:var(--black);
+  padding:0.9rem;border-radius:var(--r2);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;
+  transition:var(--transition);
+}
+.btn-submit:hover{background:var(--amber);transform:translateY(-1px)}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--black);
+  padding:3rem 2rem 2rem;
+  color:rgba(255,255,255,0.5);
+  font-size:0.85rem;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  margin-bottom:2.5rem;
+}
+.footer-brand{color:rgba(255,255,255,0.8)}
+.footer-brand p{color:rgba(255,255,255,0.45);font-size:0.82rem;line-height:1.6;margin-top:0.8rem}
+.footer-col h5{
+  font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;
+  color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;
+}
+.footer-col a{
+  display:block;color:rgba(255,255,255,0.45);
+  font-size:0.82rem;margin-bottom:0.5rem;
+  transition:color 0.2s;
+}
+.footer-col a:hover{color:var(--sun)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+  max-width:1200px;margin:0 auto;
+}
+.solar-badge{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:rgba(255,204,0,0.1);border:1px solid rgba(255,204,0,0.2);
+  border-radius:100px;padding:0.3rem 0.8rem;font-size:0.75rem;color:var(--sun);
+}
+
+/* ===== FUN FACTS ===== */
+#ciekawostki{background:var(--deep-blue);padding:5rem 2rem}
+.facts-ticker{
+  overflow:hidden;white-space:nowrap;
+  background:rgba(255,255,255,0.05);
+  border-radius:var(--r2);padding:0.8rem 0;
+  margin:2rem 0;
+  position:relative;
+}
+.facts-ticker::before,.facts-ticker::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;
+}
+.facts-ticker::before{left:0;background:linear-gradient(to right,var(--deep-blue),transparent)}
+.facts-ticker::after{right:0;background:linear-gradient(to left,var(--deep-blue),transparent)}
+.ticker-inner{
+  display:inline-flex;gap:4rem;
+  animation:ticker 30s linear infinite;
+  padding:0 2rem;
+}
+.ticker-inner:hover{animation-play-state:paused}
+.fact-item{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.9rem;color:rgba(255,255,255,0.7);white-space:nowrap;
+}
+.fact-item strong{color:var(--sun)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.facts-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.2rem;margin-top:2rem;
+}
+.fact-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--r2);padding:1.5rem;
+  text-align:center;transition:var(--transition);cursor:pointer;
+}
+.fact-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-3px)}
+.fact-card .f-icon{font-size:2rem;margin-bottom:0.8rem}
+.fact-card .f-num{
+  font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--sun);
+}
+.fact-card .f-text{font-size:0.82rem;color:rgba(255,255,255,0.6);margin-top:0.3rem}
+
+/* ===== EASTER EGG SUN ===== */
+#easter-sun{
+  position:fixed;bottom:2rem;right:2rem;
+  width:52px;height:52px;
+  background:linear-gradient(135deg,var(--sun),var(--amber));
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+  cursor:pointer;
+  z-index:100;
+  box-shadow:0 4px 20px rgba(255,140,0,0.4);
+  transition:transform 0.3s,box-shadow 0.3s;
+  animation:floatBtn 3s ease-in-out infinite;
+}
+#easter-sun:hover{transform:scale(1.1) rotate(20deg);box-shadow:0 8px 30px rgba(255,140,0,0.6)}
+@keyframes floatBtn{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#charge-bar{
+  position:fixed;bottom:0;left:0;right:0;height:3px;
+  background:transparent;z-index:99;
+  transition:opacity 0.3s;
+}
+#charge-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--sunrise),var(--sun),var(--sky));
+  transition:width 0.1s;
+  box-shadow:0 0 8px rgba(255,204,0,0.5);
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip{position:relative;cursor:help;border-bottom:1.5px dashed var(--blue)}
+.tooltip-text{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--deep-blue);color:var(--white);
+  font-size:0.78rem;line-height:1.5;
+  padding:0.6rem 0.9rem;border-radius:var(--r);
+  white-space:nowrap;max-width:220px;white-space:normal;
+  pointer-events:none;opacity:0;transition:opacity 0.2s;
+  z-index:50;
+  box-shadow:var(--shadow);
+}
+.tooltip:hover .tooltip-text{opacity:1}
+
+/* ===== SOLAR CHARGING EFFECT ===== */
+.solar-fill{
+  --fill:0%;
+  background:linear-gradient(to top,rgba(255,204,0,0.15) var(--fill),transparent var(--fill));
+  transition:--fill 0.5s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .about-grid,.tech-panel.active,.calculator-grid,.contact-grid{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:1.5rem}
+  .hero-stat .num{font-size:1.4rem}
+  .nav-links{display:none}
+  #hamburger{display:flex}
+  .cf-row{grid-template-columns:1fr}
+  .tech-panel.active{gap:1.5rem}
+  .comparison-section{padding:1.5rem}
+  .compare-row{grid-template-columns:110px 1fr 60px;gap:0.6rem}
+  #navbar{padding:0.8rem 1.2rem}
+  #navbar.scrolled{padding:0.6rem 1.2rem}
+}
+@media(max-width:600px){
+  section{padding:3.5rem 1rem}
+  .cases-grid{grid-template-columns:1fr}
+  .grants-grid{grid-template-columns:1fr}
+  .hero-stats{display:none}
+  .footer-inner{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .compare-row{grid-template-columns:90px 1fr 50px;gap:0.4rem}
+  .compare-label{font-size:0.75rem}
+  .hero-content{padding:1rem}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-secondary{text-align:center}
+  .hero-badge{font-size:0.78rem}
+  .day-info-grid{grid-template-columns:1fr 1fr}
+  .day-btns{flex-wrap:wrap;gap:0.5rem}
+  .day-speed{width:100%;margin-left:0;font-size:0.8rem}
+  .map-legend{padding:0.7rem 0.9rem}
+  .map-legend h5{font-size:0.72rem}
+  .legend-item{font-size:0.72rem}
+  .facts-cards{grid-template-columns:1fr 1fr}
+  .footer-inner{gap:1.5rem}
+  .quiz-card{padding:1.5rem 1rem}
+  .quiz-question{font-size:0.95rem}
+  #kontakt .contact-grid{padding:3.5rem 1rem}
+  .contact-grid{gap:2rem}
+  .calculator-grid{gap:1.5rem}
+  .charts-grid{gap:1.2rem}
+  .cases-grid,.grants-grid{gap:1rem}
+  .nav-logo{font-size:1rem}
+  .nav-logo .sun-icon{width:30px;height:30px;font-size:1rem}
+  #theme-toggle{width:36px;height:36px;font-size:1rem}
+  #hamburger span{width:20px}
+  .timeline-block{padding-left:1rem}
+  .about-grid{gap:2rem}
+  .tech-tab{font-size:0.78rem;padding:0.5rem 0.8rem}
+  .tech-specs{grid-template-columns:1fr 1fr}
+  .section-inner{overflow-x:hidden}
+}
+@media(max-width:380px){
+  .result-grid{grid-template-columns:1fr}
+  .day-info-grid{grid-template-columns:1fr}
+  .facts-cards{grid-template-columns:1fr}
+  .hero-title{font-size:2.2rem}
+  .compare-row{grid-template-columns:80px 1fr 48px}
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+#theme-toggle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+#theme-toggle:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1) rotate(15deg);
+  border-color: var(--sun);
+}
+#navbar.scrolled #theme-toggle {
+  border-color: var(--mid-gray);
+  background: var(--light-gray);
+}
+body.dark #navbar.scrolled #theme-toggle {
+  border-color: #3a3f5c;
+  background: #252840;
+}
+#theme-toggle .toggle-icon {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+}
+#theme-toggle.switching .toggle-icon {
+  transform: rotate(360deg) scale(0);
+  opacity: 0;
+}
+/* Glow effect in dark mode */
+body.dark #theme-toggle {
+  box-shadow: 0 0 16px rgba(168,184,240,0.3);
+}
+.nav-right {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+
+/* PANEL CHARGE ANIMATION on scroll */
+@keyframes charge{
+  0%{background-position:0% 100%}
+  100%{background-position:0% 0%}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="sun-icon" id="nav-sun" title="Kliknij mnie!">☀️</div>
+    Słoneczne Mzurki
+  </div>
+  <div class="nav-links">
+    <a href="#o-mzurkach">O wsi</a>
+    <a href="#technologia">Technologia</a>
+    <a href="#mapa">Mapa</a>
+    <a href="#kalkulator">Kalkulator</a>
+    <a href="#harmonogram">Dzień PV</a>
+    <a href="#realizacje">Realizacje</a>
+    <a href="#dofinansowanie">Dotacje</a>
+    <a href="#faq">FAQ</a>
+    <a href="#kontakt" class="nav-cta">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <button id="theme-toggle" onclick="toggleTheme()" title="Zmień motyw">
+      <span class="toggle-icon" id="toggle-icon">☀️</span>
+    </button>
+    <div id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <span id="close-mobile" onclick="toggleMobile()">✕</span>
+  <a href="#o-mzurkach" onclick="toggleMobile()">O wsi</a>
+  <a href="#technologia" onclick="toggleMobile()">Technologia</a>
+  <a href="#mapa" onclick="toggleMobile()">Mapa instalacji</a>
+  <a href="#kalkulator" onclick="toggleMobile()">Kalkulator PV</a>
+  <a href="#harmonogram" onclick="toggleMobile()">Dzień PV</a>
+  <a href="#realizacje" onclick="toggleMobile()">Realizacje</a>
+  <a href="#dofinansowanie" onclick="toggleMobile()">Dotacje</a>
+  <a href="#faq" onclick="toggleMobile()">FAQ</a>
+  <a href="#kontakt" onclick="toggleMobile()">Kontakt</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <canvas id="sky-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Wieś przyszłości – już dziś
+    </div>
+    <h1 class="hero-title">
+      Słoneczna<br>
+      <span>energia</span><br>
+      dla Mzurek
+    </h1>
+    <p class="hero-subtitle">
+      Odkryj, jak energia słoneczna zmienia naszą wieś. Oszczędzaj, chroń środowisko i ciesz się niezależnością energetyczną.
+    </p>
+    <div class="hero-btns">
+      <a href="#kalkulator" class="btn-primary">🔆 Oblicz swoje oszczędności</a>
+      <a href="#o-mzurkach" class="btn-secondary">Poznaj historię →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num" data-target="47">0</div>
+      <div class="lbl">Instalacji PV</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num" data-target="420" data-suffix="kW">0</div>
+      <div class="lbl">Łączna moc</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num" data-target="68" data-suffix="%">0</div>
+      <div class="lbl">Mniej CO₂</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num" data-target="2100" data-suffix="h">0</div>
+      <div class="lbl">Słońca rocznie</div>
+    </div>
+  </div>
+  <div class="scroll-indicator">Przewiń</div>
+</section>
+
+<!-- ============ O MZURKACH ============ -->
+<section id="o-mzurkach">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Historia i tradycja</span>
+      <h2 class="section-title">Mzurki – wieś,<br>która patrzy w przyszłość</h2>
+      <p class="section-desc">
+        Malownicza wieś Mzurki w województwie łódzkim łączy wieloletnią tradycję rolniczą z nowoczesnym podejściem do energetyki. Już od 2018 roku mieszkańcy aktywnie inwestują w <span class="tooltip">fotowoltaikę<span class="tooltip-text">Fotowoltaika – technologia zamiany energii słonecznej bezpośrednio w prąd elektryczny za pomocą ogniw krzemowych.</span></span>, budując energetyczną wspólnotę przyszłości.
+      </p>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="timeline-block">
+          <div class="year">2018</div>
+          <h4>🌱 Pierwsze instalacje</h4>
+          <p>Trzy rodziny z Mzurek jako pierwsze zamontowały panele fotowoltaiczne, inspirując resztę wsi.</p>
+        </div>
+        <div class="timeline-block">
+          <div class="year">2020</div>
+          <h4>📋 Lokalna inicjatywa</h4>
+          <p>Mieszkańcy założyli Stowarzyszenie „Zielone Mzurki" i uzyskali dofinansowanie z programu Mój Prąd.</p>
+        </div>
+        <div class="timeline-block">
+          <div class="year">2022</div>
+          <h4>⚡ Klaster energetyczny</h4>
+          <p>Powstał lokalny klaster energetyczny – pierwsze takie rozwiązanie w powiecie piotrkowskim.</p>
+        </div>
+        <div class="timeline-block">
+          <div class="year">2024</div>
+          <h4>🏆 Nagroda regionalna</h4>
+          <p>Mzurki nagrodzone przez Urząd Marszałkowski jako „Najbardziej zielona wieś województwa łódzkiego".</p>
+        </div>
+        <div class="timeline-block">
+          <div class="year">2025+</div>
+          <h4>🔋 Magazyny energii</h4>
+          <p>Projekt rozbudowy o systemy magazynowania energii i mikrosieci wiejskiej. Cel: 80% własnej energii!</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="about-visual">
+          <canvas id="villageCanvas" style="width:100%;height:100%"></canvas>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem">
+          <div style="background:var(--off-white);border-radius:var(--r2);padding:1.2rem;text-align:center">
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--deep-blue)">1,850</div>
+            <div style="font-size:0.8rem;color:var(--dark-gray)">mieszkańców wsi</div>
+          </div>
+          <div style="background:var(--off-white);border-radius:var(--r2);padding:1.2rem;text-align:center">
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--blue)">2,100</div>
+            <div style="font-size:0.8rem;color:var(--dark-gray)">godzin słońca/rok</div>
+          </div>
+          <div style="background:var(--off-white);border-radius:var(--r2);padding:1.2rem;text-align:center">
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--green)">47</div>
+            <div style="font-size:0.8rem;color:var(--dark-gray)">instalacji PV</div>
+          </div>
+          <div style="background:var(--off-white);border-radius:var(--r2);padding:1.2rem;text-align:center">
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--amber)">420</div>
+            <div style="font-size:0.8rem;color:var(--dark-gray)">kW łączna moc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNOLOGY ============ -->
+<section id="technologia">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Jak to działa</span>
+      <h2 class="section-title">Technologia solarna<br>od podstaw</h2>
+      <p class="section-desc">
+        Poznaj komponenty nowoczesnej instalacji fotowoltaicznej – od paneli, przez inwertery, aż po inteligentne systemy zarządzania energią.
+      </p>
+    </div>
+    <div class="tech-tabs reveal">
+      <button class="tech-tab active" onclick="showTech('panel')">☀️ Panele PV</button>
+      <button class="tech-tab" onclick="showTech('inverter')">⚡ Inwertery</button>
+      <button class="tech-tab" onclick="showTech('battery')">🔋 Magazyny</button>
+      <button class="tech-tab" onclick="showTech('grid')">🔌 Mikrosieci</button>
+    </div>
+    <div class="tech-panels reveal">
+
+      <div class="tech-panel active" id="tech-panel">
+        <div class="tech-panel-info">
+          <h3>Panele fotowoltaiczne</h3>
+          <p>Nowoczesne panele <span class="tooltip">monokrystaliczne<span class="tooltip-text">Panele monokrystaliczne – wykonane z jednego kryształu krzemu; najwyższa sprawność (18-23%), długa żywotność.</span></span> osiągają sprawność nawet 23%. Każdy panel składa się z setek ogniw fotowoltaicznych zamieniających fotony słoneczne w prąd stały (DC). W typowej instalacji domowej stosuje się 8–20 paneli o mocy 400–600 Wp każdy.</p>
+          <p>Porównaj popularne typy paneli używanych w Mzurkach:</p>
+          <div class="tech-specs">
+            <div class="spec-item">
+              <div class="spec-label">Moc panelu</div>
+              <div class="spec-val">440 Wp</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Sprawność</div>
+              <div class="spec-val">21.8%</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Gwarancja mocy</div>
+              <div class="spec-val">30 lat</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Temp. pracy</div>
+              <div class="spec-val">-40 do +85°C</div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-visual" id="tech-visual">
+          <canvas id="panelCanvas" width="400" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="tech-panel" id="tech-inverter" style="display:none">
+        <div class="tech-panel-info">
+          <h3>Falowniki (Inwertery)</h3>
+          <p>Inwerter to serce instalacji PV – zamienia prąd stały (DC) z paneli na prąd zmienny (AC) używany w domu i sieci. Nowoczesne <span class="tooltip">inwertery hybrydowe<span class="tooltip-text">Inwerter hybrydowy łączy funkcje falownika solarnego i ładowarki baterii, umożliwiając jednoczesną pracę z siecią i magazynem.</span></span> łączą solarny + bateryjny + gridowy w jednym urządzeniu.</p>
+          <div class="tech-specs">
+            <div class="spec-item"><div class="spec-label">Typ</div><div class="spec-val">Hybrydowy</div></div>
+            <div class="spec-item"><div class="spec-label">Moc</div><div class="spec-val">5–10 kW</div></div>
+            <div class="spec-item"><div class="spec-label">Sprawność</div><div class="spec-val">97.6%</div></div>
+            <div class="spec-item"><div class="spec-label">Monitoring</div><div class="spec-val">Wi-Fi/App</div></div>
+          </div>
+        </div>
+        <div class="tech-visual">
+          <canvas id="inverterCanvas" width="400" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="tech-panel" id="tech-battery" style="display:none">
+        <div class="tech-panel-info">
+          <h3>Magazyny energii</h3>
+          <p>Baterie <span class="tooltip">litowo-żelazowo-fosforanowe (LiFePO4)<span class="tooltip-text">LiFePO4 – bezpieczna chemia baterii, odporna na przegrzewanie. Żywotność 4000–6000 cykli, ok. 15 lat pracy.</span></span> pozwalają przechowywać nadwyżki energii z południa i wykorzystywać je wieczorem lub w nocy. Dom z baterią może być niezależny energetycznie nawet w 90%!</p>
+          <div class="tech-specs">
+            <div class="spec-item"><div class="spec-label">Pojemność</div><div class="spec-val">10–20 kWh</div></div>
+            <div class="spec-item"><div class="spec-label">Chemii</div><div class="spec-val">LiFePO4</div></div>
+            <div class="spec-item"><div class="spec-label">Cykli</div><div class="spec-val">6000+</div></div>
+            <div class="spec-item"><div class="spec-label">Efektywność</div><div class="spec-val">95%</div></div>
+          </div>
+        </div>
+        <div class="tech-visual">
+          <canvas id="batteryCanvas" width="400" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="tech-panel" id="tech-grid" style="display:none">
+        <div class="tech-panel-info">
+          <h3>Mikrosieć wiejska</h3>
+          <p>Klaster energetyczny w Mzurkach tworzy lokalną <span class="tooltip">mikrosieć<span class="tooltip-text">Mikrosieć – lokalna sieć energetyczna, która może działać niezależnie od krajowej sieci energetycznej (tryb wyspowy).</span></span>, która umożliwia dzielenie się energią między gospodarstwami. W szczycie produkcji sąsiedzi mogą kupować tanią energię od siebie nawzajem!</p>
+          <div class="tech-specs">
+            <div class="spec-item"><div class="spec-label">Uczestników</div><div class="spec-val">23 domy</div></div>
+            <div class="spec-item"><div class="spec-label">Łączna moc</div><div class="spec-val">180 kW</div></div>
+            <div class="spec-item"><div class="spec-label">Oszczędności</div><div class="spec-val">~40%</div></div>
+            <div class="spec-item"><div class="spec-label">Status</div><div class="spec-val">Aktywna</div></div>
+          </div>
+        </div>
+        <div class="tech-visual">
+          <canvas id="gridCanvas" width="400" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON SLIDERS -->
+    <div class="comparison-section reveal">
+      <h3>🔧 Porównaj parametry paneli</h3>
+      <div class="compare-row">
+        <span class="compare-label">Sprawność (%)</span>
+        <input type="range" class="compare-slider" id="eff-slider" min="14" max="24" value="21" oninput="updateCompare(this,'eff-val','%')">
+        <span class="compare-val" id="eff-val">21%</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Moc Wp</span>
+        <input type="range" class="compare-slider" id="wp-slider" min="250" max="650" value="440" oninput="updateCompare(this,'wp-val',' Wp')">
+        <span class="compare-val" id="wp-val">440 Wp</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Cena (zł/Wp)</span>
+        <input type="range" class="compare-slider" id="price-slider" min="1.5" max="5" step="0.1" value="2.8" oninput="updateCompare(this,'price-val',' zł')">
+        <span class="compare-val" id="price-val">2.8 zł</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Gwarancja (lata)</span>
+        <input type="range" class="compare-slider" id="guar-slider" min="10" max="30" value="25" oninput="updateCompare(this,'guar-val',' lat')">
+        <span class="compare-val" id="guar-val">25 lat</span>
+      </div>
+      <div style="margin-top:1rem;padding:1rem;background:var(--off-white);border-radius:var(--r2);font-size:0.88rem;color:var(--dark-gray)">
+        💡 <strong>Wyliczenie:</strong> Przy wybranych parametrach instalacja 10 kW kosztuje ok. <span id="calc-cost" style="color:var(--deep-blue);font-weight:700">28 000 zł</span> i wyprodukuje <span id="calc-kwh" style="color:var(--green);font-weight:700">9 500 kWh/rok</span>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section id="mapa">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Instalacje w wsi</span>
+      <h2 class="section-title">Mapa instalacji<br>fotowoltaicznych</h2>
+      <p class="section-desc">Kliknij na budynek, aby zobaczyć szczegóły instalacji. Każda kropka to prawdziwy sukces lokalnej społeczności.</p>
+    </div>
+    <div class="map-container reveal">
+      <canvas id="village-map" width="1100" height="520"></canvas>
+      <div class="map-legend">
+        <h5>Legenda</h5>
+        <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>Aktywna instalacja PV</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f5a623"></div>PV + magazyn energii</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4a9eff"></div>Klaster energetyczny</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c8cdd8"></div>Planowana instalacja</div>
+      </div>
+      <div class="house-popup" id="house-popup"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMULATOR/KALKULATOR ============ -->
+<section id="kalkulator">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Narzędzie interaktywne</span>
+      <h2 class="section-title">Kalkulator solarny<br>dla Twojego domu</h2>
+      <p class="section-desc">Podaj dane swojego domu i sprawdź, ile możesz zaoszczędzić dzięki instalacji fotowoltaicznej.</p>
+    </div>
+    <div class="calculator-grid reveal">
+      <div class="calc-form">
+        <h3>⚙️ Twoje dane</h3>
+        <div class="form-group">
+          <label>Powierzchnia dachu (m²): <span class="range-display"><span class="current" id="roof-val">40 m²</span></span></label>
+          <input type="range" id="roof-size" min="10" max="150" value="40" oninput="updateCalc()">
+          <div class="range-display"><span>10 m²</span><span>150 m²</span></div>
+        </div>
+        <div class="form-group">
+          <label>Liczba paneli: <span class="range-display"><span class="current" id="panels-val">10 szt.</span></span></label>
+          <input type="range" id="panel-count" min="4" max="40" value="10" oninput="updateCalc()">
+          <div class="range-display"><span>4 szt.</span><span>40 szt.</span></div>
+        </div>
+        <div class="form-group">
+          <label>Zużycie energii (kWh/mies.): <span class="range-display"><span class="current" id="energy-val">350 kWh</span></span></label>
+          <input type="range" id="energy-use" min="100" max="1000" value="350" oninput="updateCalc()">
+          <div class="range-display"><span>100</span><span>1000 kWh</span></div>
+        </div>
+        <div class="form-group">
+          <label>Nachylenie dachu (°): <span class="range-display"><span class="current" id="tilt-val">35°</span></span></label>
+          <input type="range" id="roof-tilt" min="10" max="60" value="35" oninput="updateCalc()">
+          <div class="range-display"><span>10°</span><span>60°</span></div>
+        </div>
+        <div class="form-group">
+          <label>Orientacja dachu:</label>
+          <select id="roof-orient" onchange="updateCalc()">
+            <option value="1.0">Południe (optymalne)</option>
+            <option value="0.95">Południowy-wschód / zachód</option>
+            <option value="0.85">Wschód lub Zachód</option>
+            <option value="0.70">Północ (nieopłacalne)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cena prądu (zł/kWh): <span class="range-display"><span class="current" id="price-val2">0.85 zł</span></span></label>
+          <input type="range" id="price-kwh" min="0.5" max="1.5" step="0.01" value="0.85" oninput="updateCalc()">
+          <div class="range-display"><span>0.50 zł</span><span>1.50 zł</span></div>
+        </div>
+        <label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;font-weight:600;color:var(--deep-blue);cursor:pointer">
+          <input type="checkbox" id="has-battery" onchange="updateCalc()" style="accent-color:var(--deep-blue);width:16px;height:16px">
+          Dodaj magazyn energii (+8 000 zł)
+        </label>
+      </div>
+
+      <div class="calc-results">
+        <h3>📊 Wyniki dla Twojej instalacji</h3>
+        <div class="result-grid">
+          <div class="result-card">
+            <div><span class="r-num" id="r-power">4.4</span><span class="r-unit">kWp</span></div>
+            <div class="r-label">Moc instalacji</div>
+          </div>
+          <div class="result-card">
+            <div><span class="r-num" id="r-annual">4750</span><span class="r-unit">kWh</span></div>
+            <div class="r-label">Produkcja roczna</div>
+          </div>
+          <div class="result-card">
+            <div><span class="r-num" id="r-savings">4038</span><span class="r-unit">zł/rok</span></div>
+            <div class="r-label">Oszczędności roczne</div>
+          </div>
+          <div class="result-card">
+            <div><span class="r-num" id="r-payback">6.5</span><span class="r-unit">lat</span></div>
+            <div class="r-label">Zwrot inwestycji</div>
+          </div>
+          <div class="result-card">
+            <div><span class="r-num" id="r-cost">26000</span><span class="r-unit">zł</span></div>
+            <div class="r-label">Koszt instalacji</div>
+          </div>
+          <div class="result-card">
+            <div><span class="r-num" id="r-co2">3.4</span><span class="r-unit">t CO₂</span></div>
+            <div class="r-label">CO₂ zaoszczędzone/rok</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <h4>Miesięczna produkcja energii (kWh)</h4>
+          <canvas id="productionChart"></canvas>
+        </div>
+        <div class="chart-wrap">
+          <h4>Zwrot z inwestycji w czasie (zł)</h4>
+          <canvas id="savingsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY TIMELINE ============ -->
+<section id="harmonogram">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Interaktywna symulacja</span>
+      <h2 class="section-title">Dzień z życia<br>paneli solarnych</h2>
+      <p class="section-desc">Obserwuj, jak produkują się kilowatogodziny od wschodu do zachodu słońca. Przesuń suwak lub naciśnij Play!</p>
+    </div>
+    <div class="day-timeline reveal">
+      <div class="timeline-track">
+        <div class="timeline-progress" id="day-progress"></div>
+        <div class="timeline-thumb" id="day-thumb" style="left:0%"></div>
+      </div>
+      <div class="time-markers">
+        <span class="time-marker" data-h="5">5:00</span>
+        <span class="time-marker" data-h="7">7:00</span>
+        <span class="time-marker" data-h="9">9:00</span>
+        <span class="time-marker" data-h="11">11:00</span>
+        <span class="time-marker" data-h="13">13:00</span>
+        <span class="time-marker" data-h="15">15:00</span>
+        <span class="time-marker" data-h="17">17:00</span>
+        <span class="time-marker" data-h="19">19:00</span>
+        <span class="time-marker" data-h="21">21:00</span>
+      </div>
+
+      <div class="day-info-grid" id="day-cards">
+        <div class="day-info-card" data-period="0">
+          <div class="di-time">🌅 Świt (5–7h)</div>
+          <div class="di-power" id="card-dawn">0.2 kW</div>
+          <div class="di-desc">Pierwsze promienie. Produkcja rośnie powoli.</div>
+        </div>
+        <div class="day-info-card" data-period="1">
+          <div class="di-time">🌤 Rano (7–10h)</div>
+          <div class="di-power" id="card-morning">1.8 kW</div>
+          <div class="di-desc">Wzrost produkcji. Gotowanie, AGD.</div>
+        </div>
+        <div class="day-info-card" data-period="2">
+          <div class="di-time">☀️ Południe (10–14h)</div>
+          <div class="di-power" id="card-noon">4.2 kW</div>
+          <div class="di-desc">Szczyt produkcji! Nadwyżka do sieci/baterii.</div>
+        </div>
+        <div class="day-info-card" data-period="3">
+          <div class="di-time">🌇 Popołudnie (14–18h)</div>
+          <div class="di-power" id="card-afternoon">2.6 kW</div>
+          <div class="di-desc">Dobra produkcja. Ładowanie samochodu EV.</div>
+        </div>
+        <div class="day-info-card" data-period="4">
+          <div class="di-time">🌆 Wieczór (18–21h)</div>
+          <div class="di-power" id="card-evening">0.4 kW</div>
+          <div class="di-desc">Słabnąca produkcja. Bateria przejmuje zasilanie.</div>
+        </div>
+      </div>
+
+      <div class="day-canvas-wrap">
+        <canvas id="dayChart"></canvas>
+        <div class="day-btns">
+          <button class="day-btn" id="play-btn" onclick="toggleDayPlay()">▶ Play</button>
+          <button class="day-btn" onclick="resetDay()">↩ Reset</button>
+          <button class="day-btn" onclick="setDayTime(0.45)">☀️ Południe</button>
+          <button class="day-btn" onclick="setDayTime(0.85)">🌆 Wieczór</button>
+          <span class="day-speed">Czas: <strong id="current-time">5:00</strong> | Moc: <strong id="current-power" style="color:var(--amber)">0.0 kW</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHARTS ============ -->
+<section id="wykresy">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Dane i statystyki</span>
+      <h2 class="section-title">Produkcja energii<br>w liczbach</h2>
+    </div>
+    <div class="charts-grid reveal">
+      <div class="chart-card">
+        <h3>📅 Produkcja miesięczna wsi (MWh)</h3>
+        <div class="chart-tabs">
+          <button class="chart-tab active" onclick="switchChart('monthly','year')">2024</button>
+          <button class="chart-tab" onclick="switchChart('monthly','year23')">2023</button>
+          <button class="chart-tab" onclick="switchChart('monthly','year22')">2022</button>
+        </div>
+        <canvas id="monthlyChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>🌡️ Wpływ temperatury na wydajność</h3>
+        <canvas id="tempChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>💰 Łączne oszczędności wsi (zł)</h3>
+        <canvas id="villageChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>🌱 Redukcja emisji CO₂ (tony)</h3>
+        <canvas id="co2Chart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section id="realizacje">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Realne przykłady</span>
+      <h2 class="section-title">Case study –<br>nasi sąsiedzi</h2>
+      <p class="section-desc">Poznaj prawdziwe instalacje w Mzurkach. Kliknij kartę, aby zobaczyć szczegółową analizę.</p>
+    </div>
+    <div class="cases-grid reveal">
+      <div class="case-card" onclick="showCase(0)">
+        <div class="case-thumb">
+          <canvas class="case-canvas" data-id="0" style="width:100%;height:200px"></canvas>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Dom jednorodzinny</span>
+          <h4>Rodzina Kowalskich</h4>
+          <p>Dom z 2006 roku, 180 m², 5 osób. Instalacja 8 kWp + magazyn 10 kWh. Redukcja rachunków o 94%!</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="m-val">8 kWp</div><div class="m-lbl">Moc</div></div>
+            <div class="case-metric"><div class="m-val">94%</div><div class="m-lbl">Oszczędności</div></div>
+            <div class="case-metric"><div class="m-val">7800 zł</div><div class="m-lbl">Rocznie</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card" onclick="showCase(1)">
+        <div class="case-thumb">
+          <canvas class="case-canvas" data-id="1" style="width:100%;height:200px"></canvas>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Gospodarstwo rolne</span>
+          <h4>Gospodarstwo Nowaków</h4>
+          <p>Ferma drobiu, 12 ha. Instalacja 50 kWp na dachach kurników. Zasilanie pomp i oświetlenia. Zwrot w 4,5 roku.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="m-val">50 kWp</div><div class="m-lbl">Moc</div></div>
+            <div class="case-metric"><div class="m-val">4.5 lat</div><div class="m-lbl">Zwrot</div></div>
+            <div class="case-metric"><div class="m-val">42 000 zł</div><div class="m-lbl">Rocznie</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card" onclick="showCase(2)">
+        <div class="case-thumb">
+          <canvas class="case-canvas" data-id="2" style="width:100%;height:200px"></canvas>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Świetlica wiejska</span>
+          <h4>Świetlica w Mzurkach</h4>
+          <p>Komunalna instalacja 15 kWp na dachu świetlicy. Zasilanie imprez, zebrań, ogrzewania. Koszt gminy = 0 zł!</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="m-val">15 kWp</div><div class="m-lbl">Moc</div></div>
+            <div class="case-metric"><div class="m-val">0 zł</div><div class="m-lbl">Rachunek</div></div>
+            <div class="case-metric"><div class="m-val">12 000 zł</div><div class="m-lbl">Rocznie</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRANTS ============ -->
+<section id="dofinansowanie">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Wsparcie finansowe</span>
+      <h2 class="section-title">Dostępne dotacje<br>i programy</h2>
+      <p class="section-desc">Skorzystaj z dofinansowania i zmniejsz koszt instalacji nawet o 50–70%. Oto aktualne programy dostępne dla mieszkańców Mzurek.</p>
+    </div>
+    <div class="grants-grid reveal">
+      <div class="grant-card">
+        <div class="grant-icon">🏠</div>
+        <h4>Mój Prąd 6.0</h4>
+        <p>Dotacja dla prosumentów na zakup instalacji PV, magazynów energii i systemów zarządzania. Nabór ciągły.</p>
+        <div class="grant-amount">do 7 000 zł <small>na PV</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">+ do 16 000 zł na magazyn energii</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-icon">🌿</div>
+        <h4>Czyste Powietrze</h4>
+        <p>Program dofinansowania termomodernizacji i OZE dla właścicieli domów jednorodzinnych. Można łączyć!</p>
+        <div class="grant-amount">do 135 000 zł <small>łącznie</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">PV, pompa ciepła, okna, ocieplenie</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-icon">🌾</div>
+        <h4>ARIMR – Rolnicy</h4>
+        <p>Wsparcie dla rolników na instalacje OZE w gospodarstwach. Premie do 100 000 zł dla farm energetycznych.</p>
+        <div class="grant-amount">do 100 000 zł <small>dla rolników</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">Minimalnie 5 kW instalacji</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-icon">🏙️</div>
+        <h4>Program Gminy</h4>
+        <p>Lokalne wsparcie dla mieszkańców Mzurek – bezpłatny audyt energetyczny i pomoc w wypełnieniu wniosków.</p>
+        <div class="grant-amount">Gratis <small>audyt + doradztwo</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">Kontakt: sołtys Mzurek</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-icon">🏦</div>
+        <h4>Kredyt Ekologiczny BGK</h4>
+        <p>Niskooprocentowany kredyt na inwestycje OZE. Oprocentowanie 2% rocznie, spłata do 15 lat.</p>
+        <div class="grant-amount">2% rocznie <small>oprocentowanie</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">Możliwe umorzenie do 50%</div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-icon">⚡</div>
+        <h4>Klaster Energetyczny</h4>
+        <p>Dołącz do klastra energetycznego Mzurek i korzystaj z tańszej energii od sąsiadów. Redukcja rachunków!</p>
+        <div class="grant-amount">~40% <small>taniej za prąd</small></div>
+        <div style="font-size:0.75rem;color:var(--dark-gray);margin-top:0.3rem">23 gospodarstwa w klastrze</div>
+      </div>
+    </div>
+
+    <div style="background:var(--off-white);border-radius:var(--r3);padding:2rem;margin-top:2.5rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap" class="reveal">
+      <div style="font-size:2.5rem">💡</div>
+      <div>
+        <h4 style="font-size:1.1rem;font-weight:800;color:var(--deep-blue);margin-bottom:0.4rem">Jak złożyć wniosek?</h4>
+        <p style="font-size:0.88rem;color:var(--dark-gray);line-height:1.6">
+          1. Zamów bezpłatny audyt u nas → 2. Wybierz instalatora z listy zaufanych firm → 3. My pomagamy w złożeniu wniosku → 4. Instalacja → 5. Wniosek o dotację → 6. Oszczędzasz!
+        </p>
+      </div>
+      <a href="#kontakt" class="btn-primary" style="white-space:nowrap">Zamów audyt →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIEKAWOSTKI ============ -->
+<section id="ciekawostki">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label" style="color:var(--sun)">Czy wiesz, że...</span>
+      <h2 class="section-title" style="color:var(--white)">Fascynujące fakty<br>o energii słonecznej</h2>
+    </div>
+    <div class="facts-ticker">
+      <div class="ticker-inner" id="ticker">
+        <div class="fact-item">☀️ Słońce dostarcza do Ziemi <strong>173 000 terawatów</strong> energii stale</div>
+        <div class="fact-item">🌍 Godzina słońca wystarczyłaby na zasilenie świata przez <strong>cały rok</strong></div>
+        <div class="fact-item">📉 Koszt paneli PV spadł o <strong>99%</strong> w ciągu ostatnich 40 lat</div>
+        <div class="fact-item">🇵🇱 Polska ma ponad <strong>17 GW</strong> zainstalowanej mocy PV (2024)</div>
+        <div class="fact-item">🔋 Największa bateria solarna świata ma pojemność <strong>1,4 GWh</strong></div>
+        <div class="fact-item">🏡 Panel PV zwraca energię potrzebną do produkcji w <strong>1–3 lata</strong></div>
+        <div class="fact-item">☀️ Słońce dostarcza do Ziemi <strong>173 000 terawatów</strong> energii stale</div>
+        <div class="fact-item">🌍 Godzina słońca wystarczyłaby na zasilenie świata przez <strong>cały rok</strong></div>
+        <div class="fact-item">📉 Koszt paneli PV spadł o <strong>99%</strong> w ciągu ostatnich 40 lat</div>
+        <div class="fact-item">🇵🇱 Polska ma ponad <strong>17 GW</strong> zainstalowanej mocy PV (2024)</div>
+      </div>
+    </div>
+    <div class="facts-cards reveal">
+      <div class="fact-card">
+        <div class="f-icon">☀️</div>
+        <div class="f-num">8 min</div>
+        <div class="f-text">tyle trwa podróż światła ze słońca do panelu na Twoim dachu</div>
+      </div>
+      <div class="fact-card">
+        <div class="f-icon">🔆</div>
+        <div class="f-num">99%</div>
+        <div class="f-text">spadek cen paneli PV od 1977 roku – technologia demokratyzuje energię</div>
+      </div>
+      <div class="fact-card">
+        <div class="f-icon">🌱</div>
+        <div class="f-num">30 lat</div>
+        <div class="f-text">gwarancji mocy nowoczesnych paneli monokrystalicznych</div>
+      </div>
+      <div class="fact-card">
+        <div class="f-icon">🇵🇱</div>
+        <div class="f-num">17 GW</div>
+        <div class="f-text">zainstalowanej mocy PV w Polsce – wchodzimy w top 10 Europy!</div>
+      </div>
+      <div class="fact-card">
+        <div class="f-icon">🚗</div>
+        <div class="f-num">15 000 km</div>
+        <div class="f-text">przejedzie samochód elektryczny zasilany roczną produkcją 10 paneli</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz-section">
+  <div class="quiz-card">
+    <span class="section-label">Test wiedzy</span>
+    <h2>Quiz solarny!</h2>
+    <p>Sprawdź, ile wiesz o energii słonecznej. 5 pytań, każde ciekawsze od poprzedniego!</p>
+    <div id="quiz-container">
+      <div class="quiz-question" id="quiz-q"></div>
+      <div class="quiz-options" id="quiz-opts"></div>
+      <div class="quiz-feedback" id="quiz-fb"></div>
+      <button id="quiz-next" onclick="nextQuestion()">Następne pytanie →</button>
+    </div>
+    <div class="quiz-progress" id="quiz-progress"></div>
+    <div id="quiz-result" style="display:none;margin-top:1.5rem">
+      <div style="font-size:3rem;margin-bottom:0.5rem" id="quiz-emoji">🏆</div>
+      <div style="font-size:1.3rem;font-weight:700;color:var(--sun)" id="quiz-score-text"></div>
+      <button onclick="restartQuiz()" style="margin-top:1rem;background:var(--sun);color:var(--black);padding:0.6rem 1.5rem;border-radius:var(--r2);font-family:'Syne',sans-serif;font-weight:700;cursor:pointer">
+        Zagraj ponownie 🔄
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">Pytania i odpowiedzi</span>
+      <h2 class="section-title">Najczęstsze pytania</h2>
+      <p class="section-desc" style="margin:0 auto">Wszystko, co chcesz wiedzieć o fotowoltaice, zanim podejmiesz decyzję.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Czy instalacja PV opłaca się w Polsce?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Tak! Polska należy do krajów z dobrym nasłonecznieniem (1600–2100 h/rok). Średnia instalacja 10 kWp produkuje ok. 9000–10 000 kWh rocznie, a zwrot z inwestycji wynosi 6–9 lat. Przy cenach prądu powyżej 0,80 zł/kWh to bardzo opłacalne.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Czy panele działają w pochmurne dni?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Tak! Panele fotowoltaiczne działają przy świetle rozproszonym – w pochmurny dzień produkują 10–30% maksymalnej mocy. W Polsce ok. 60% rocznej produkcji pochodzi z miesięcy marzec–wrzesień, ale panele działają przez cały rok.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Ile trwa montaż instalacji?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Standardowa instalacja domowa (5–10 kWp) jest montowana w 1–2 dni. Następnie czeka się na podłączenie do sieci przez dystrybutora (zwykle 30–90 dni) i odbiór techniczny. Cały proces od podpisania umowy do pełnej pracy trwa 2–4 miesiące.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Jaka jest żywotność paneli PV?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Nowoczesne panele monokrystaliczne mają gwarancję mocy 30 lat (>80% po 30 latach). W praktyce działają ponad 40 lat. Inwerter wymaga wymiany po ok. 10–15 latach (koszt 2000–5000 zł). Baterie LiFePO4 wytrzymują 6000+ cykli, czyli ok. 15–20 lat.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Czy potrzebuję pozwolenia na budowę?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Dla instalacji do 50 kWp na budynkach mieszkalnych nie jest wymagane pozwolenie na budowę – wystarczy zgłoszenie (lub nawet brak formalności przy instalacjach do 6,5 kWp). Większe instalacje wymagają pozwolenia. Nasz doradca pomoże Ci w formalnościach.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Co to jest net-billing i jak działa?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Net-billing (obowiązujący od 2022 r.) to system, w którym za oddaną do sieci energię otrzymujesz wynagrodzenie według aktualnej ceny rynkowej. Środki gromadzą się na koncie prosumenta i możesz je wykorzystać na zakup energii w nocy lub zimą. To zachęca do instalowania magazynów energii.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Jak dołączyć do klastra energetycznego w Mzurkach?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Wystarczy skontaktować się z nami przez formularz poniżej lub bezpośrednio ze Stowarzyszeniem „Zielone Mzurki". Warunki: posiadanie instalacji PV min. 3 kWp, podpisanie umowy klastrowej, uiszczenie symbolicznej rocznej składki 120 zł. Korzyści: tańsza energia, wsparcie techniczne, wspólne zakupy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="kontakt" style="padding:0">
+  <div class="contact-grid" style="padding:6rem 2rem">
+    <div class="contact-info reveal">
+      <span class="section-label" style="color:rgba(255,255,255,0.5)">Skontaktuj się</span>
+      <h2>Zaczynamy razem?</h2>
+      <p>Napisz do nas – doradzimy, policzymy i pomożemy od A do Z. Bezpłatna konsultacja, bez zobowiązań.</p>
+      <div class="contact-detail">
+        <div class="c-icon">📍</div>
+        <div class="c-text">
+          <strong>Adres</strong>
+          <span>Mzurki, gm. Wolbórz, pow. piotrkowski, woj. łódzkie</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📞</div>
+        <div class="c-text">
+          <strong>Telefon</strong>
+          <span>+48 609 XXX XXX (pon–pt, 8–18)</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📧</div>
+        <div class="c-text">
+          <strong>Email</strong>
+          <span>kontakt@slonecznemzurki.pl</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">🌐</div>
+        <div class="c-text">
+          <strong>Stowarzyszenie</strong>
+          <span>„Zielone Mzurki" – KRS 0000XXXXXX</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>📬 Wyślij wiadomość</h3>
+      <div class="cf-row">
+        <div class="cf-group">
+          <label>Imię i nazwisko</label>
+          <input type="text" placeholder="Jan Kowalski">
+        </div>
+        <div class="cf-group">
+          <label>Telefon</label>
+          <input type="tel" placeholder="+48 600 000 000">
+        </div>
+      </div>
+      <div class="cf-group">
+        <label>Email</label>
+        <input type="email" placeholder="jan@example.com">
+      </div>
+      <div class="cf-group">
+        <label>Temat</label>
+        <select>
+          <option>Bezpłatna wycena instalacji PV</option>
+          <option>Magazyn energii</option>
+          <option>Dołączenie do klastra</option>
+          <option>Pomoc z dofinansowaniem</option>
+          <option>Inne pytanie</option>
+        </select>
+      </div>
+      <div class="cf-group">
+        <label>Wiadomość</label>
+        <textarea placeholder="Opisz swoją sytuację – wielkosc dachu, zużycie prądu, pytania..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm(event)">🚀 Wyślij wiadomość</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--white);display:flex;align-items:center;gap:0.5rem">
+        ☀️ Słoneczne Mzurki
+      </div>
+      <p>Lokalna inicjatywa energetyczna wsi Mzurki. Budujemy razem przyszłość opartą na czystej, taniej i lokalnej energii słonecznej.</p>
+      <div style="margin-top:1rem">
+        <span class="solar-badge">🌱 Zero emisji CO₂</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Nawigacja</h5>
+      <a href="#o-mzurkach">O Mzurkach</a>
+      <a href="#technologia">Technologia PV</a>
+      <a href="#mapa">Mapa instalacji</a>
+      <a href="#kalkulator">Kalkulator</a>
+      <a href="#harmonogram">Dzień PV</a>
+    </div>
+    <div class="footer-col">
+      <h5>Zasoby</h5>
+      <a href="#realizacje">Case Studies</a>
+      <a href="#dofinansowanie">Dotacje i programy</a>
+      <a href="#faq">Często pytane (FAQ)</a>
+      <a href="#ciekawostki">Ciekawostki</a>
+    </div>
+    <div class="footer-col">
+      <h5>Kontakt</h5>
+      <a href="#kontakt">Formularz kontaktowy</a>
+      <a href="mailto:kontakt@slonecznemzurki.pl">Email</a>
+      <a href="#">Facebook</a>
+      <a href="#">Stowarzyszenie</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Słoneczne Mzurki · Stowarzyszenie „Zielone Mzurki"</span>
+    <span>Wykonano z ❤️ dla społeczności wsi Mzurki</span>
+  </div>
+</footer>
+
+<!-- Easter Egg Sun Button -->
+<div id="easter-sun" title="Kliknij mnie! 🌞" onclick="easterEgg()">☀️</div>
+<div id="charge-bar"><div id="charge-fill"></div></div>
+
+<!-- ===== ALL JAVASCRIPT ===== -->
+<script>
+// ============ NAVBAR SCROLL ============
+window.addEventListener('scroll',()=>{
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+  updateChargeBar();
+});
+
+function toggleMobile(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ============ SKY CANVAS ANIMATION ============
+const skyCanvas = document.getElementById('sky-canvas');
+const skyCtx = skyCanvas.getContext('2d');
+let skyTime = 0.4;
+let skyAnim;
+
+function resizeSky(){
+  skyCanvas.width = window.innerWidth;
+  skyCanvas.height = window.innerHeight;
+}
+resizeSky();
+window.addEventListener('resize', resizeSky);
+
+function getSkyColors(t){
+  // t: 0 = midnight, 0.25 = sunrise, 0.5 = noon, 0.75 = sunset, 1 = midnight
+  if(t < 0.2) return ['#0a0b2e','#1a1a4e']; // night
+  if(t < 0.3) return ['#ff6b35','#ff8c00']; // sunrise
+  if(t < 0.6) return ['#1565c0','#42a5f5']; // day
+  if(t < 0.75) return ['#e65100','#ff8f00']; // sunset
+  return ['#0a0b2e','#1a1a4e']; // night
+}
+
+function drawSky(t){
+  const w = skyCanvas.width, h = skyCanvas.height;
+  const [c1,c2] = getSkyColors(t);
+  const grad = skyCtx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0, c1);
+  grad.addColorStop(1, c2);
+  skyCtx.fillStyle = grad;
+  skyCtx.fillRect(0,0,w,h);
+
+  // Sun position
+  const sunX = w * t;
+  const sunY = h * 0.5 - Math.sin(t * Math.PI) * h * 0.45;
+  const sunR = 50 + Math.sin(t * Math.PI) * 10;
+
+  // Sun glow
+  if(t > 0.2 && t < 0.85){
+    const glow = skyCtx.createRadialGradient(sunX,sunY,0,sunX,sunY,sunR*3);
+    const alpha = Math.min(1, (t > 0.5 ? 1 - (t-0.5)*2 : (t-0.2)*4)) * 0.3;
+    glow.addColorStop(0,`rgba(255,220,0,${alpha})`);
+    glow.addColorStop(1,'transparent');
+    skyCtx.fillStyle = glow;
+    skyCtx.beginPath();
+    skyCtx.arc(sunX,sunY,sunR*3,0,Math.PI*2);
+    skyCtx.fill();
+
+    // Sun
+    skyCtx.fillStyle = '#ffdd00';
+    skyCtx.beginPath();
+    skyCtx.arc(sunX, sunY, sunR, 0, Math.PI*2);
+    skyCtx.fill();
+
+    // Rays
+    skyCtx.strokeStyle = 'rgba(255,220,0,0.25)';
+    skyCtx.lineWidth = 1.5;
+    for(let i=0;i<12;i++){
+      const angle = (i/12)*Math.PI*2 + skyTime*0.2;
+      skyCtx.beginPath();
+      skyCtx.moveTo(sunX+Math.cos(angle)*sunR*1.1, sunY+Math.sin(angle)*sunR*1.1);
+      skyCtx.lineTo(sunX+Math.cos(angle)*sunR*2.5, sunY+Math.sin(angle)*sunR*2.5);
+      skyCtx.stroke();
+    }
+  }
+
+  // Stars (night)
+  if(t < 0.22 || t > 0.78){
+    const starAlpha = t < 0.22 ? 1 - t*4 : (t-0.78)*4;
+    skyCtx.fillStyle = `rgba(255,255,255,${Math.min(1,starAlpha)*0.8})`;
+    for(let i=0;i<80;i++){
+      const sx = (i*137.5)%w;
+      const sy = (i*97.3)%( h*0.6);
+      const sr = 0.5 + (i%3)*0.4;
+      skyCtx.beginPath();
+      skyCtx.arc(sx,sy,sr,0,Math.PI*2);
+      skyCtx.fill();
+    }
+  }
+
+  // Ground
+  const groundGrad = skyCtx.createLinearGradient(0,h*0.75,0,h);
+  groundGrad.addColorStop(0,'#2d5a1b');
+  groundGrad.addColorStop(1,'#1a3a0a');
+  skyCtx.fillStyle = groundGrad;
+  skyCtx.beginPath();
+  skyCtx.moveTo(0,h*0.78);
+  for(let x=0;x<w;x+=40){
+    const wy = h*0.78 + Math.sin(x*0.015)*8 + Math.sin(x*0.04)*3;
+    skyCtx.lineTo(x, wy);
+  }
+  skyCtx.lineTo(w,h);
+  skyCtx.lineTo(0,h);
+  skyCtx.closePath();
+  skyCtx.fill();
+
+  // Simple village silhouette
+  skyCtx.fillStyle = 'rgba(0,0,0,0.5)';
+  const houses = [
+    [w*0.1,h*0.73,60,50],[w*0.22,h*0.74,80,45],[w*0.38,h*0.72,70,55],
+    [w*0.55,h*0.73,65,50],[w*0.68,h*0.74,90,48],[w*0.82,h*0.72,75,52]
+  ];
+  houses.forEach(([hx,hy,hw,hh])=>{
+    // Body
+    skyCtx.fillRect(hx-hw/2, hy-hh, hw, hh);
+    // Roof
+    skyCtx.beginPath();
+    skyCtx.moveTo(hx-hw/2-5, hy-hh);
+    skyCtx.lineTo(hx, hy-hh-hh*0.4);
+    skyCtx.lineTo(hx+hw/2+5, hy-hh);
+    skyCtx.closePath();
+    skyCtx.fill();
+    // Panel glow if day
+    if(t > 0.25 && t < 0.8){
+      skyCtx.fillStyle = `rgba(255,220,50,${0.1+Math.sin(skyTime)*0.05})`;
+      skyCtx.fillRect(hx-hw*0.35, hy-hh+5, hw*0.7, hh*0.25);
+      skyCtx.fillStyle = 'rgba(0,0,0,0.5)';
+    }
+  });
+}
+
+function animateSky(){
+  skyTime += 0.003;
+  skyCanvas.width = skyCanvas.width; // clear
+  drawSky(skyTime % 1);
+  requestAnimationFrame(animateSky);
+}
+animateSky();
+
+// ============ COUNTER ANIMATION ============
+function animateCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix||'';
+    let current = 0;
+    const step = target/60;
+    const id = setInterval(()=>{
+      current = Math.min(current+step, target);
+      el.textContent = Math.floor(current)+suffix;
+      if(current >= target) clearInterval(id);
+    },25);
+  });
+}
+
+// ============ REVEAL ON SCROLL ============
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ============ HERO COUNTER on load ============
+window.addEventListener('load',()=>{
+  setTimeout(animateCounters, 500);
+});
+
+// ============ NAVIGATION SUN EASTER EGG ============
+document.getElementById('nav-sun').addEventListener('click',function(){
+  this.classList.add('spinning');
+  setTimeout(()=>this.classList.remove('spinning'), 800);
+});
+
+// ============ VILLAGE CANVAS (About Section) ============
+function drawVillageIllustration(){
+  const canvas = document.getElementById('villageCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 400;
+  canvas.height = canvas.offsetHeight || 300;
+  const w = canvas.width, h = canvas.height;
+
+  // Sky gradient
+  const skyG = ctx.createLinearGradient(0,0,0,h*0.65);
+  skyG.addColorStop(0,'#1565c0');
+  skyG.addColorStop(1,'#42a5f5');
+  ctx.fillStyle = skyG;
+  ctx.fillRect(0,0,w,h);
+
+  // Sun
+  ctx.fillStyle = '#ffdd00';
+  ctx.beginPath();
+  ctx.arc(w*0.75, h*0.2, 28, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,220,0,0.3)';
+  ctx.lineWidth = 1;
+  for(let i=0;i<8;i++){
+    const a = (i/8)*Math.PI*2;
+    ctx.beginPath();
+    ctx.moveTo(w*0.75+Math.cos(a)*30, h*0.2+Math.sin(a)*30);
+    ctx.lineTo(w*0.75+Math.cos(a)*50, h*0.2+Math.sin(a)*50);
+    ctx.stroke();
+  }
+
+  // Ground
+  ctx.fillStyle = '#4a7c2f';
+  ctx.fillRect(0, h*0.65, w, h*0.35);
+
+  // Houses
+  const houseData = [
+    {x:0.1, y:0.62, w:0.12, h:0.25, color:'#e8d5b7'},
+    {x:0.28, y:0.60, w:0.15, h:0.28, color:'#ddd0c0'},
+    {x:0.5, y:0.62, w:0.13, h:0.25, color:'#e8d5b7'},
+    {x:0.7, y:0.61, w:0.14, h:0.27, color:'#d4c5b0'},
+  ];
+  houseData.forEach(({x,y,w:hw,h:hh,color})=>{
+    const px = x*w, py = y*h, pw = hw*w, ph = hh*h;
+    ctx.fillStyle = color;
+    ctx.fillRect(px, py, pw, ph);
+    ctx.fillStyle = '#8b4513';
+    ctx.beginPath();
+    ctx.moveTo(px-4, py);
+    ctx.lineTo(px+pw/2, py-ph*0.35);
+    ctx.lineTo(px+pw+4, py);
+    ctx.closePath();
+    ctx.fill();
+    // Solar panels
+    ctx.fillStyle = '#1565c0';
+    ctx.fillRect(px+pw*0.1, py-ph*0.3+4, pw*0.35, ph*0.14);
+    ctx.fillRect(px+pw*0.52, py-ph*0.3+4, pw*0.35, ph*0.14);
+    // Panel lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = 0.5;
+    ctx.strokeRect(px+pw*0.1, py-ph*0.3+4, pw*0.35, ph*0.14);
+    // Door
+    ctx.fillStyle = '#795548';
+    ctx.fillRect(px+pw*0.4, py+ph*0.6, pw*0.22, ph*0.4);
+    // Sun rays on panels
+    ctx.strokeStyle = 'rgba(255,220,0,0.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(w*0.75, h*0.2);
+    ctx.lineTo(px+pw*0.3, py-ph*0.23);
+    ctx.stroke();
+  });
+
+  // Road
+  ctx.fillStyle = '#9e9e9e';
+  ctx.fillRect(0, h*0.83, w, h*0.1);
+  ctx.setLineDash([20,15]);
+  ctx.strokeStyle = '#ffee58';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(0, h*0.88);
+  ctx.lineTo(w, h*0.88);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// Wait for element to render
+setTimeout(drawVillageIllustration, 300);
+
+// ============ TECH TABS ============
+function showTech(type){
+  document.querySelectorAll('.tech-tab').forEach((t,i)=>{
+    t.classList.toggle('active', ['panel','inverter','battery','grid'][i]===type);
+  });
+  document.querySelectorAll('.tech-panel').forEach(p=>p.style.display='none');
+  const map = {panel:'tech-panel',inverter:'tech-inverter',battery:'tech-battery',grid:'tech-grid'};
+  document.getElementById(map[type]).style.display='grid';
+  // Draw panel visual
+  setTimeout(()=>drawTechVisual(type), 50);
+}
+
+function drawTechVisual(type){
+  const ids = {panel:'panelCanvas',inverter:'inverterCanvas',battery:'batteryCanvas',grid:'gridCanvas'};
+  const canvas = document.getElementById(ids[type]);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = 400; canvas.height = 280;
+  const w=400, h=280;
+  ctx.clearRect(0,0,w,h);
+
+  if(type==='panel'){
+    // Draw solar panel
+    ctx.fillStyle = '#0d1b3e';
+    ctx.roundRect(40, 40, 320, 200, 8);
+    ctx.fill();
+    for(let r=0;r<4;r++) for(let c=0;c<6;c++){
+      ctx.fillStyle = r===1&&c===2 ? '#1e4fc2' : '#162040';
+      ctx.fillRect(50+c*50, 50+r*46, 44, 40);
+      ctx.strokeStyle = '#2a3a6e';
+      ctx.lineWidth = 0.5;
+      ctx.strokeRect(50+c*50, 50+r*46, 44, 40);
+    }
+    ctx.fillStyle = '#ffdd00';
+    ctx.font = 'bold 14px Syne';
+    ctx.fillText('☀️ → ⚡', 160, 260);
+  } else if(type==='inverter'){
+    ctx.fillStyle = '#1a2e5a';
+    ctx.roundRect(80, 40, 240, 200, 12);
+    ctx.fill();
+    ctx.strokeStyle = '#4a9eff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(80, 40, 240, 200);
+    // Screen
+    ctx.fillStyle = '#0a1628';
+    ctx.fillRect(100, 60, 200, 100);
+    // Waveform
+    ctx.strokeStyle = '#22c55e';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for(let x=0;x<200;x++){
+      const y = 110 + Math.sin(x*0.1)*30;
+      x===0?ctx.moveTo(100+x,y):ctx.lineTo(100+x,y);
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#4a9eff';
+    ctx.font = '12px DM Sans';
+    ctx.fillText('AC 230V  97.6% eff.', 108, 185);
+    // Status dots
+    for(let i=0;i<3;i++){
+      ctx.fillStyle = i===1 ? '#22c55e' : '#1e4fc2';
+      ctx.beginPath();
+      ctx.arc(120+i*30, 215, 6, 0, Math.PI*2);
+      ctx.fill();
+    }
+  } else if(type==='battery'){
+    // Battery shape
+    ctx.fillStyle = '#1a2e5a';
+    ctx.roundRect(80, 50, 240, 160, 8);
+    ctx.fill();
+    ctx.fillStyle = '#2a3a6e';
+    ctx.fillRect(190, 35, 20, 18);
+    // Fill level
+    const lvl = 0.75;
+    ctx.fillStyle = '#22c55e';
+    ctx.roundRect(90, 60, 220*lvl, 140, 4);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.font = 'bold 28px Syne';
+    ctx.textAlign = 'center';
+    ctx.fillText('75%', 200, 145);
+    ctx.font = '13px DM Sans';
+    ctx.fillText('LiFePO₄ · 10 kWh', 200, 165);
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#ffdd00';
+    ctx.font = '13px DM Sans';
+    ctx.fillText('⚡ Ładowanie: 2.4 kW', 100, 230);
+  } else if(type==='grid'){
+    // Microgrid diagram
+    const nodes = [
+      {x:200, y:50, label:'Słońce', color:'#ffdd00', icon:'☀️'},
+      {x:80, y:150, label:'Dom A', color:'#4a9eff', icon:'🏠'},
+      {x:200, y:150, label:'Inwerter', color:'#22c55e', icon:'⚡'},
+      {x:320, y:150, label:'Dom B', color:'#4a9eff', icon:'🏠'},
+      {x:80, y:240, label:'Bateria', color:'#f5a623', icon:'🔋'},
+      {x:320, y:240, label:'Sieć', color:'#6b7280', icon:'🔌'},
+    ];
+    // Lines
+    ctx.strokeStyle = 'rgba(74,158,255,0.4)';
+    ctx.lineWidth = 2;
+    const connections = [[0,2],[2,1],[2,3],[1,4],[3,5]];
+    connections.forEach(([a,b])=>{
+      ctx.beginPath();
+      ctx.moveTo(nodes[a].x, nodes[a].y);
+      ctx.lineTo(nodes[b].x, nodes[b].y);
+      ctx.stroke();
+    });
+    nodes.forEach(({x,y,label,color,icon})=>{
+      ctx.fillStyle = '#0d1b3e';
+      ctx.beginPath();
+      ctx.arc(x,y,24,0,Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(x,y,24,0,Math.PI*2);
+      ctx.stroke();
+      ctx.font = '16px serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(icon, x, y+5);
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.font = '10px DM Sans';
+      ctx.fillText(label, x, y+38);
+    });
+    ctx.textAlign = 'left';
+  }
+}
+setTimeout(()=>drawTechVisual('panel'), 400);
+
+// ============ COMPARISON SLIDERS ============
+function updateCompare(el, valId, suffix){
+  document.getElementById(valId).textContent = el.value + suffix;
+  const wp = parseFloat(document.getElementById('wp-slider').value);
+  const price = parseFloat(document.getElementById('price-slider').value);
+  const eff = parseFloat(document.getElementById('eff-slider').value);
+  const cost = Math.round(10000 * price);
+  const kwh = Math.round(10000/440 * wp * 950 * (eff/21.8));
+  document.getElementById('calc-cost').textContent = cost.toLocaleString('pl') + ' zł';
+  document.getElementById('calc-kwh').textContent = kwh.toLocaleString('pl') + ' kWh/rok';
+}
+
+// ============ VILLAGE MAP ============
+const houseData = [
+  {x:120,y:180,name:'Rodzina Kowalskich',kw:8,type:'battery',savings:7800,panels:18,year:2020},
+  {x:230,y:220,name:'Dom Wiśniewskich',kw:5,type:'pv',savings:4200,panels:11,year:2021},
+  {x:350,y:170,name:'Gospodarstwo Nowaków',kw:50,type:'cluster',savings:42000,panels:114,year:2019},
+  {x:460,y:210,name:'Rodzina Kowalczyk',kw:6,type:'pv',savings:5100,panels:13,year:2022},
+  {x:570,y:180,name:'Dom Lewandowskich',kw:9,type:'battery',savings:8200,panels:20,year:2021},
+  {x:680,y:220,name:'Rodzina Wróblewskich',kw:4,type:'pv',savings:3400,panels:9,year:2023},
+  {x:790,y:170,name:'Świetlica wiejska',kw:15,type:'cluster',savings:12000,panels:34,year:2022},
+  {x:900,y:210,name:'Dom Kamińskich',kw:7,type:'pv',savings:5950,panels:16,year:2022},
+  {x:140,y:330,name:'Rodzina Zielińskich',kw:5.5,type:'pv',savings:4675,panels:12,year:2023},
+  {x:270,y:360,name:'Dom Szymańskich',kw:12,type:'battery',savings:10200,panels:27,year:2020},
+  {x:420,y:340,name:'Rodzina Woźniaków',kw:8,type:'pending',savings:0,panels:18,year:2025},
+  {x:560,y:370,name:'Gospodarstwo Dąbrowskich',kw:35,type:'cluster',savings:29750,panels:80,year:2021},
+  {x:700,y:340,name:'Dom Piotrowskich',kw:6,type:'pv',savings:5100,panels:13,year:2023},
+  {x:850,y:360,name:'Rodzina Michalskich',kw:10,type:'battery',savings:8500,panels:22,year:2022},
+];
+const typeColors = {pv:'#22c55e', battery:'#f5a623', cluster:'#4a9eff', pending:'#c8cdd8'};
+
+function drawVillageMap(){
+  const canvas = document.getElementById('village-map');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 1100;
+  const w = canvas.width, h = 520;
+  canvas.height = h;
+
+  // Sky
+  const skyG = ctx.createLinearGradient(0,0,0,h*0.5);
+  skyG.addColorStop(0,'#87ceeb');
+  skyG.addColorStop(1,'#b8e4f9');
+  ctx.fillStyle = skyG;
+  ctx.fillRect(0,0,w,h*0.5);
+
+  // Ground
+  const groundG = ctx.createLinearGradient(0,h*0.45,0,h);
+  groundG.addColorStop(0,'#7ab648');
+  groundG.addColorStop(0.3,'#5a8a30');
+  groundG.addColorStop(1,'#3d5e20');
+  ctx.fillStyle = groundG;
+  ctx.fillRect(0,h*0.45,w,h*0.55);
+
+  // Road
+  ctx.fillStyle = '#b0bec5';
+  ctx.fillRect(0, h*0.28, w, h*0.08);
+  ctx.setLineDash([30,20]);
+  ctx.strokeStyle = '#ffee58';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(0,h*0.32); ctx.lineTo(w,h*0.32);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Trees
+  for(let i=0;i<20;i++){
+    const tx = (i+0.5)*(w/20);
+    const ty = h*0.45 + (i%3)*8;
+    ctx.fillStyle = '#2e7d32';
+    ctx.beginPath();
+    ctx.moveTo(tx, ty-28);
+    ctx.lineTo(tx-14, ty+10);
+    ctx.lineTo(tx+14, ty+10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#4caf50';
+    ctx.beginPath();
+    ctx.moveTo(tx, ty-38);
+    ctx.lineTo(tx-10, ty-8);
+    ctx.lineTo(tx+10, ty-8);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Houses
+  houseData.forEach((h_, i)=>{
+    const {x,y,type} = h_;
+    const col = typeColors[type];
+    // House body
+    ctx.fillStyle = '#eceff1';
+    ctx.fillRect(x-18, y-14, 36, 30);
+    // Roof
+    ctx.fillStyle = '#8d6e63';
+    ctx.beginPath();
+    ctx.moveTo(x-20, y-14);
+    ctx.lineTo(x, y-32);
+    ctx.lineTo(x+20, y-14);
+    ctx.closePath();
+    ctx.fill();
+    // Panels
+    if(type !== 'pending'){
+      ctx.fillStyle = '#1565c0';
+      ctx.fillRect(x-14, y-28, 12, 8);
+      ctx.fillRect(x+2, y-28, 12, 8);
+    }
+    // Status dot
+    ctx.fillStyle = col;
+    ctx.beginPath();
+    ctx.arc(x+14, y-20, 7, 0, Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(x+14, y-20, 7, 0, Math.PI*2);
+    ctx.stroke();
+  });
+
+  // Labels
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 12px Syne';
+  ctx.textAlign = 'center';
+  ctx.fillText('🌾 MZURKI', w/2, 40);
+  ctx.textAlign = 'left';
+}
+
+function setupMapInteraction(){
+  const canvas = document.getElementById('village-map');
+  if(!canvas) return;
+  const popup = document.getElementById('house-popup');
+
+  canvas.addEventListener('mousemove', e=>{
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
+
+    let found = houseData.find(h=>Math.hypot(h.x-mx, h.y-my) < 22);
+    if(found){
+      canvas.style.cursor = 'pointer';
+      popup.innerHTML = `
+        <h4>${found.name}</h4>
+        <div class="popup-stat"><span>Moc instalacji</span><span>${found.kw} kWp</span></div>
+        <div class="popup-stat"><span>Liczba paneli</span><span>${found.panels} szt.</span></div>
+        <div class="popup-stat"><span>Roczne oszczędności</span><span>${found.savings>0?found.savings.toLocaleString('pl')+' zł':'Planowana'}</span></div>
+        <div class="popup-stat"><span>Rok instalacji</span><span>${found.year}</span></div>
+        <div class="popup-stat"><span>Typ</span><span style="color:${typeColors[found.type]}">${{pv:'⚡ PV',battery:'🔋 PV+Bateria',cluster:'🌐 Klaster',pending:'⏳ Planowana'}[found.type]}</span></div>
+      `;
+      popup.style.left = (e.offsetX + 20) + 'px';
+      popup.style.top = (e.offsetY - 20) + 'px';
+      popup.classList.add('show');
+    } else {
+      canvas.style.cursor = 'default';
+      popup.classList.remove('show');
+    }
+  });
+
+  canvas.addEventListener('mouseleave', ()=>popup.classList.remove('show'));
+}
+
+setTimeout(()=>{
+  drawVillageMap();
+  setupMapInteraction();
+}, 400);
+
+// ============ CALCULATOR ============
+function updateCalc(){
+  const roof = parseInt(document.getElementById('roof-size').value);
+  const panels = parseInt(document.getElementById('panel-count').value);
+  const energy = parseInt(document.getElementById('energy-use').value);
+  const tilt = parseInt(document.getElementById('roof-tilt').value);
+  const orient = parseFloat(document.getElementById('roof-orient').value);
+  const priceKwh = parseFloat(document.getElementById('price-kwh').value);
+  const battery = document.getElementById('has-battery').checked;
+
+  document.getElementById('roof-val').textContent = roof + ' m²';
+  document.getElementById('panels-val').textContent = panels + ' szt.';
+  document.getElementById('energy-val').textContent = energy + ' kWh';
+  document.getElementById('tilt-val').textContent = tilt + '°';
+  document.getElementById('price-val2').textContent = priceKwh.toFixed(2) + ' zł';
+
+  const peakPower = panels * 0.44;
+  const tiltFactor = 1 - Math.abs(tilt - 35) * 0.005;
+  const annual = Math.round(peakPower * 1050 * orient * tiltFactor);
+  const savings = Math.round(annual * priceKwh);
+  const baseCost = Math.round(panels * 2800);
+  const totalCost = battery ? baseCost + 8000 : baseCost;
+  const payback = (totalCost / savings).toFixed(1);
+  const co2 = (annual * 0.00072).toFixed(1);
+
+  document.getElementById('r-power').textContent = peakPower.toFixed(1);
+  document.getElementById('r-annual').textContent = annual.toLocaleString('pl');
+  document.getElementById('r-savings').textContent = savings.toLocaleString('pl');
+  document.getElementById('r-payback').textContent = payback;
+  document.getElementById('r-cost').textContent = totalCost.toLocaleString('pl');
+  document.getElementById('r-co2').textContent = co2;
+
+  // Monthly production chart
+  const months = [0.3,0.4,0.65,0.85,0.95,1.0,1.0,0.95,0.8,0.6,0.35,0.25];
+  const monthlyData = months.map(m=>Math.round(annual/12*m));
+  drawBarChart('productionChart', monthlyData, ['Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paź','Lis','Gru'], '#4a9eff');
+
+  // Savings over time
+  const years = Array.from({length:25},(_,i)=>i+1);
+  const cumulativeSavings = years.map(y=>Math.round(y*savings - totalCost));
+  drawLineChart('savingsChart', cumulativeSavings, '#22c55e', totalCost, savings);
+}
+
+function drawBarChart(id, data, labels, color){
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 400;
+  canvas.height = 120;
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  const max = Math.max(...data);
+  const bw = (w-30) / data.length;
+  data.forEach((v,i)=>{
+    const bh = (v/max) * (h-25);
+    const x = 15 + i*bw;
+    const y = h-25-bh;
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0,y,0,h-25);
+    grad.addColorStop(0, color);
+    grad.addColorStop(1, color+'44');
+    ctx.fillStyle = grad;
+    ctx.roundRect(x+2, y, bw-4, bh, 2);
+    ctx.fill();
+    // Label
+    if(i%2===0){
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.font = '9px DM Sans';
+      ctx.textAlign = 'center';
+      ctx.fillText(labels[i], x+bw/2, h-8);
+    }
+  });
+}
+
+function drawLineChart(id, data, color, cost, annual){
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 400;
+  canvas.height = 80;
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  const min = Math.min(...data), max = Math.max(...data);
+  const range = max - min || 1;
+  const pts = data.map((v,i)=>({
+    x: (i/(data.length-1)) * (w-20) + 10,
+    y: h-10 - ((v-min)/range) * (h-20)
+  }));
+
+  // Zero line
+  const zeroY = h-10 - ((0-min)/range) * (h-20);
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4,4]);
+  ctx.beginPath();
+  ctx.moveTo(10, zeroY);
+  ctx.lineTo(w-10, zeroY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Area
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x, h-10);
+  ctx.lineTo(pts[0].x, h-10);
+  ctx.closePath();
+  ctx.fillStyle = color+'22';
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+// Init calculator
+setTimeout(updateCalc, 300);
+
+// ============ DAY TIMELINE ============
+let dayProgress = 0;
+let dayPlaying = false;
+let dayInterval;
+const dayHours = 16; // 5:00 to 21:00
+const powerCurve = [
+  0,0.05,0.15,0.4,0.8,1.4,2.2,3.0,3.8,4.2,4.4,4.3,4.0,3.5,2.8,2.0,1.2,0.5,0.2,0.05,0,0
+];
+
+function setDayTime(pct){
+  dayProgress = pct;
+  updateDayUI();
+}
+
+function updateDayUI(){
+  const pct = dayProgress;
+  document.getElementById('day-progress').style.width = (pct*100)+'%';
+  document.getElementById('day-thumb').style.left = (pct*100)+'%';
+
+  const hour = 5 + pct * 16;
+  const h = Math.floor(hour), m = Math.floor((hour-h)*60);
+  document.getElementById('current-time').textContent = `${h}:${m.toString().padStart(2,'0')}`;
+
+  const powerIdx = pct * (powerCurve.length-1);
+  const lo = Math.floor(powerIdx), hi = Math.min(lo+1, powerCurve.length-1);
+  const power = powerCurve[lo] + (powerCurve[hi]-powerCurve[lo])*(powerIdx-lo);
+  document.getElementById('current-power').textContent = power.toFixed(1)+' kW';
+
+  // Highlight active card
+  const period = pct < 0.125 ? 0 : pct < 0.3125 ? 1 : pct < 0.5625 ? 2 : pct < 0.8125 ? 3 : 4;
+  document.querySelectorAll('.day-info-card').forEach((c,i)=>c.classList.toggle('active', i===period));
+
+  // Update time markers
+  document.querySelectorAll('.time-marker').forEach(m=>{
+    const mh = parseInt(m.dataset.h);
+    const markerPct = (mh-5)/16;
+    m.classList.toggle('active', Math.abs(markerPct-pct)<0.07);
+  });
+
+  drawDayChart(pct);
+}
+
+function toggleDayPlay(){
+  dayPlaying = !dayPlaying;
+  const btn = document.getElementById('play-btn');
+  if(dayPlaying){
+    btn.textContent = '⏸ Pauza';
+    btn.classList.add('playing');
+    dayInterval = setInterval(()=>{
+      dayProgress += 0.004;
+      if(dayProgress >= 1){ dayProgress = 0; }
+      updateDayUI();
+    }, 50);
+  } else {
+    btn.textContent = '▶ Play';
+    btn.classList.remove('playing');
+    clearInterval(dayInterval);
+  }
+}
+
+function resetDay(){
+  dayProgress = 0;
+  if(dayPlaying) toggleDayPlay();
+  updateDayUI();
+}
+
+// Make timeline draggable
+const track = document.querySelector('.timeline-track');
+let isDragging = false;
+if(track){
+  track.addEventListener('mousedown', startDrag);
+  document.addEventListener('mousemove', doDrag);
+  document.addEventListener('mouseup', ()=>isDragging=false);
+  track.addEventListener('touchstart', e=>startDrag(e.touches[0]));
+  document.addEventListener('touchmove', e=>doDrag(e.touches[0]));
+
+  function startDrag(e){
+    isDragging = true;
+    doDrag(e);
+  }
+  function doDrag(e){
+    if(!isDragging) return;
+    const rect = track.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX-rect.left)/rect.width));
+    dayProgress = pct;
+    updateDayUI();
+  }
+}
+
+function drawDayChart(currentPct){
+  const canvas = document.getElementById('dayChart');
+  if(!canvas) return;
+  canvas.width = canvas.offsetWidth || 800;
+  canvas.height = 200;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  const pts = powerCurve.map((v,i)=>({
+    x: (i/(powerCurve.length-1))*(w-40)+20,
+    y: h-30 - (v/4.4)*(h-50)
+  }));
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(13,27,62,0.08)';
+  ctx.lineWidth = 1;
+  for(let i=1;i<5;i++){
+    const y = h-30 - (i/5)*(h-50);
+    ctx.beginPath(); ctx.moveTo(20,y); ctx.lineTo(w-20,y); ctx.stroke();
+    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+    ctx.font = '10px DM Sans';
+    ctx.fillText((i*4.4/5).toFixed(1)+' kW', 2, y+4);
+  }
+
+  // Filled area
+  const grad = ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,'rgba(245,166,35,0.35)');
+  grad.addColorStop(1,'rgba(245,166,35,0.02)');
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x, h-30);
+  ctx.lineTo(pts[0].x, h-30);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle = '#f5a623';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Current position marker
+  const cx = currentPct * (w-40) + 20;
+  const ci = currentPct * (powerCurve.length-1);
+  const lo = Math.floor(ci), hi = Math.min(lo+1, powerCurve.length-1);
+  const cpow = powerCurve[lo]+(powerCurve[hi]-powerCurve[lo])*(ci-lo);
+  const cy = h-30-(cpow/4.4)*(h-50);
+  ctx.fillStyle = '#f5a623';
+  ctx.beginPath(); ctx.arc(cx,cy,6,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(cx,cy,6,0,Math.PI*2); ctx.stroke();
+
+  // Vertical line
+  ctx.strokeStyle = 'rgba(245,166,35,0.4)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx, h-30); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Time labels
+  ctx.fillStyle = 'rgba(0,0,0,0.45)';
+  ctx.font = '10px DM Sans';
+  ctx.textAlign = 'center';
+  const timeLbls = ['5h','7h','9h','11h','13h','15h','17h','19h','21h'];
+  timeLbls.forEach((lbl,i)=>{
+    ctx.fillText(lbl, 20+i*(w-40)/8, h-10);
+  });
+  ctx.textAlign = 'left';
+}
+
+// Init day chart
+setTimeout(()=>updateDayUI(), 400);
+
+// ============ VILLAGE CHARTS ============
+function initCharts(){
+  // Monthly
+  drawVillageBarChart('monthlyChart',
+    [18,24,42,68,82,95,98,88,70,48,22,16],
+    ['Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paź','Lis','Gru'],
+    ['#4a9eff','#42a5f5']
+  );
+  // Temp effect
+  drawTempChart();
+  // Village savings
+  drawGrowthChart('villageChart',
+    [45,82,140,195,267,340,428].map(v=>v*1000),
+    ['2019','2020','2021','2022','2023','2024','2025'],'#22c55e'
+  );
+  // CO2
+  drawGrowthChart('co2Chart',
+    [32,58,98,138,188,239,301],
+    ['2019','2020','2021','2022','2023','2024','2025'],'#4a9eff'
+  );
+}
+
+function drawVillageBarChart(id, data, labels, colors){
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  canvas.width = canvas.offsetWidth || 500;
+  canvas.height = 220;
+  const ctx = canvas.getContext('2d');
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const max = Math.max(...data);
+  const bw = (w-40)/data.length;
+  data.forEach((v,i)=>{
+    const bh = (v/max)*(h-50);
+    const x = 20+i*bw;
+    const y = h-35-bh;
+    const grad = ctx.createLinearGradient(0,y,0,h-35);
+    grad.addColorStop(0,'#4a9eff');
+    grad.addColorStop(1,'#1565c044');
+    ctx.fillStyle = grad;
+    ctx.roundRect(x+2, y, bw-4, bh, 3);
+    ctx.fill();
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '10px DM Sans';
+    ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x+bw/2, h-15);
+    if(v > max*0.5){
+      ctx.fillStyle = '#1565c0';
+      ctx.font = 'bold 9px DM Sans';
+      ctx.fillText(v, x+bw/2, y-4);
+    }
+  });
+  ctx.textAlign = 'left';
+}
+
+function drawTempChart(){
+  const canvas = document.getElementById('tempChart');
+  if(!canvas) return;
+  canvas.width = canvas.offsetWidth || 500;
+  canvas.height = 220;
+  const ctx = canvas.getContext('2d');
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  const temps = [-5,0,5,10,15,20,25,30,35,40,45];
+  const eff = [1.08,1.05,1.03,1.01,1.0,0.98,0.95,0.91,0.86,0.81,0.76];
+
+  const pts = temps.map((t,i)=>({
+    x: 30+(t+5)/(45+5)*(w-50),
+    y: h-30-(eff[i]-0.74)/(1.1-0.74)*(h-50)
+  }));
+
+  // Grid
+  ctx.strokeStyle = '#eef0f4';
+  ctx.lineWidth = 1;
+  for(let i=0;i<5;i++){
+    const y = h-30-i*(h-50)/4;
+    ctx.beginPath(); ctx.moveTo(30,y); ctx.lineTo(w-20,y); ctx.stroke();
+  }
+
+  // Area
+  const grad = ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,'rgba(239,68,68,0.2)');
+  grad.addColorStop(0.5,'rgba(34,197,94,0.2)');
+  grad.addColorStop(1,'rgba(34,197,94,0.05)');
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x, h-30);
+  ctx.lineTo(pts[0].x, h-30);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle = '#ef4444';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Optimal zone
+  ctx.fillStyle = 'rgba(34,197,94,0.1)';
+  const optStart = 30+5/(45+5)*(w-50);
+  const optEnd = 30+20/(45+5)*(w-50);
+  ctx.fillRect(optStart, 30, optEnd-optStart, h-60);
+  ctx.fillStyle = '#22c55e';
+  ctx.font = '10px DM Sans';
+  ctx.fillText('Optymalny zakres', optStart+4, 44);
+
+  // Axis labels
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '10px DM Sans';
+  ctx.textAlign = 'center';
+  [-5,10,25,40].forEach(t=>{
+    const x = 30+(t+5)/(45+5)*(w-50);
+    ctx.fillText(t+'°C', x, h-12);
+  });
+  ctx.textAlign = 'left';
+}
+
+function drawGrowthChart(id, data, labels, color){
+  const canvas = document.getElementById(id);
+  if(!canvas) return;
+  canvas.width = canvas.offsetWidth || 500;
+  canvas.height = 220;
+  const ctx = canvas.getContext('2d');
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const max = Math.max(...data);
+  const pts = data.map((v,i)=>({
+    x: 30+i*(w-50)/(data.length-1),
+    y: h-30-(v/max)*(h-50)
+  }));
+  const grad = ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0, color+'44');
+  grad.addColorStop(1, color+'08');
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x, h-30);
+  ctx.lineTo(pts[0].x, h-30);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  pts.forEach((p,i)=>{
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(p.x,p.y,4,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '10px DM Sans';
+    ctx.textAlign = 'center';
+    ctx.fillText(labels[i], p.x, h-12);
+    const dVal = data[i] > 1000 ? Math.round(data[i]/1000)+' tys.' : data[i];
+    ctx.fillStyle = color;
+    ctx.font = 'bold 9px DM Sans';
+    ctx.fillText(dVal, p.x, p.y-8);
+  });
+  ctx.textAlign = 'left';
+}
+
+function switchChart(section, period){
+  document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  const datasets = {
+    year:  [18,24,42,68,82,95,98,88,70,48,22,16],
+    year23:[15,20,36,58,72,85,88,79,62,40,18,13],
+    year22:[11,16,28,45,58,70,74,66,50,32,14,10],
+  };
+  drawVillageBarChart('monthlyChart', datasets[period],
+    ['Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paź','Lis','Gru'],['#4a9eff','#1565c0']);
+}
+
+setTimeout(initCharts, 500);
+
+// ============ CASE STUDY CANVASES ============
+function drawCaseCanvases(){
+  const canvases = document.querySelectorAll('.case-canvas');
+  canvases.forEach(canvas=>{
+    const id = parseInt(canvas.dataset.id);
+    canvas.width = canvas.offsetWidth || 400;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+    const w=canvas.width, h=canvas.height;
+    const colors = [
+      {sky:'#87ceeb',roof:'#8d6e63',wall:'#eceff1'},
+      {sky:'#90caf9',roof:'#795548',wall:'#fff9c4'},
+      {sky:'#b2dfdb',roof:'#5d4037',wall:'#e8f5e9'},
+    ];
+    const c = colors[id%3];
+    const skyG = ctx.createLinearGradient(0,0,0,h*0.65);
+    skyG.addColorStop(0,'#1565c0');
+    skyG.addColorStop(1,c.sky);
+    ctx.fillStyle = skyG;
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#4a7c2f';
+    ctx.fillRect(0,h*0.68,w,h*0.32);
+    ctx.fillStyle = '#ffdd00';
+    ctx.beginPath(); ctx.arc(w*0.82,h*0.2,22,0,Math.PI*2); ctx.fill();
+
+    const sz = [120,160,180][id];
+    const hx = w/2, hy = h*0.68;
+    ctx.fillStyle = c.wall;
+    ctx.fillRect(hx-sz/2, hy-sz*0.45, sz, sz*0.45);
+    ctx.fillStyle = c.roof;
+    ctx.beginPath();
+    ctx.moveTo(hx-sz/2-8, hy-sz*0.45);
+    ctx.lineTo(hx, hy-sz*0.8);
+    ctx.lineTo(hx+sz/2+8, hy-sz*0.45);
+    ctx.closePath();
+    ctx.fill();
+    // Panels
+    ctx.fillStyle = '#1565c0';
+    for(let r=0;r<2;r++) for(let c2=0;c2<4;c2++){
+      ctx.fillRect(hx-sz*0.42+c2*sz*0.22, hy-sz*0.72+r*sz*0.12, sz*0.18, sz*0.1);
+    }
+    // kW label
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 18px Syne';
+    ctx.textAlign = 'right';
+    ctx.fillText([8,50,15][id]+' kWp', w-16, 30);
+    ctx.textAlign = 'left';
+  });
+}
+setTimeout(drawCaseCanvases, 400);
+
+// ============ FAQ ============
+function toggleFaq(el){
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+// ============ QUIZ ============
+const quizData = [
+  {
+    q:'Ile procent powierzchni Ziemi pokrytej panelami słonecznymi wystarczyłoby do zasilenia całego świata?',
+    opts:['100%','50%','1.2%','10%'], correct:2,
+    fb:'Zaledwie 1,2% powierzchni wystarczyłoby! Równoważne pustyni Sahara. Słońce to niesamowita moc!'
+  },
+  {
+    q:'Jaka jest przeciętna żywotność panelu fotowoltaicznego?',
+    opts:['10-15 lat','20-25 lat','30-40 lat','5-10 lat'], correct:2,
+    fb:'Nowoczesne panele monokrystaliczne są gwarantowane na 30 lat i działają nawet 40+ lat!'
+  },
+  {
+    q:'Skąt pochodzi ok. 60% rocznej produkcji energii z paneli w Polsce?',
+    opts:['Październik-Luty','Marzec-Wrzesień','Tylko Czerwiec-Lipiec','Cały rok równomiernie'], correct:1,
+    fb:'W Polsce 60% produkcji przypada na marzec-wrzesień, ale panele produkują przez cały rok!'
+  },
+  {
+    q:'Co to jest "prosument"?',
+    opts:['Zawodowy instalator PV','Osoba produkująca i zużywająca energię','Sprzedawca paneli','Firma energetyczna'], correct:1,
+    fb:'Prosument (pro-sument) = producent + konsument. To osoba, która sama produkuje i zużywa energię!'
+  },
+  {
+    q:'Ile kWh energii produkuje rocznie typowa instalacja 10 kWp w Polsce?',
+    opts:['2000-3000 kWh','9000-10000 kWh','20000 kWh','500 kWh'], correct:1,
+    fb:'10 kWp w Polsce produkuje ok. 9000-10000 kWh rocznie, przy nasłonecznieniu ~1050 kWh/kWp.'
+  }
+];
+let quizIndex = 0, quizScore = 0, quizAnswered = false;
+
+function renderQuiz(){
+  if(quizIndex >= quizData.length){
+    document.getElementById('quiz-container').style.display = 'none';
+    const result = document.getElementById('quiz-result');
+    result.style.display = 'block';
+    const emojis = ['😔','🤔','😊','🌟','🏆'];
+    document.getElementById('quiz-emoji').textContent = emojis[quizScore];
+    document.getElementById('quiz-score-text').textContent =
+      `${quizScore}/${quizData.length} poprawnych! ${['Czas na naukę!','Nieźle!','Dobrze!','Świetnie!','Ekspert solarny!'][quizScore]}`;
+    return;
+  }
+  const q = quizData[quizIndex];
+  document.getElementById('quiz-q').textContent = `${quizIndex+1}. ${q.q}`;
+  document.getElementById('quiz-opts').innerHTML = q.opts.map((o,i)=>
+    `<button class="quiz-option" onclick="answerQuiz(${i})">${o}</button>`
+  ).join('');
+  document.getElementById('quiz-fb').textContent = '';
+  document.getElementById('quiz-next').classList.remove('show');
+  quizAnswered = false;
+
+  // Progress dots
+  document.getElementById('quiz-progress').innerHTML = quizData.map((_,i)=>
+    `<div class="quiz-dot ${i<quizIndex?'done':i===quizIndex?'active':''}"></div>`
+  ).join('');
+}
+
+function answerQuiz(idx){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const q = quizData[quizIndex];
+  const opts = document.querySelectorAll('.quiz-option');
+  opts.forEach((o,i)=>{
+    if(i===q.correct) o.classList.add('correct');
+    else if(i===idx && idx!==q.correct) o.classList.add('wrong');
+    o.onclick = null;
+  });
+  if(idx===q.correct) quizScore++;
+  document.getElementById('quiz-fb').textContent = (idx===q.correct?'✅ Brawo! ':'❌ Niestety... ') + q.fb;
+  document.getElementById('quiz-next').classList.add('show');
+}
+
+function nextQuestion(){
+  quizIndex++;
+  renderQuiz();
+}
+
+function restartQuiz(){
+  quizIndex = 0; quizScore = 0; quizAnswered = false;
+  document.getElementById('quiz-container').style.display = 'block';
+  document.getElementById('quiz-result').style.display = 'none';
+  renderQuiz();
+}
+
+renderQuiz();
+
+// ============ CASE STUDY MODAL ============
+function showCase(id){
+  const cases = [
+    {name:'Rodzina Kowalskich',detail:'Dom 180 m², 5 osób, zbudowany 2006 r. Instalacja 8 kWp (18 paneli 440 Wp) + magazyn LiFePO4 10 kWh. Inwerter hybrydowy. Produkcja roczna: 8400 kWh. Zużycie: 8 000 kWh. Pokrycie potrzeb: 94%. Rachunki: spadek z 8 300 zł/rok do 500 zł/rok.'},
+    {name:'Gospodarstwo Nowaków',detail:'Ferma drobiu 12 ha, 50 kWp na dachach 3 kurników. 114 paneli 440 Wp, inwerter 50 kW. Produkcja: 52 500 kWh/rok. Koszt instalacji: 138 000 zł. Roczne oszczędności: 42 000 zł. Zwrot: 4,5 roku. Dofinansowanie ARiMR: 50 000 zł.'},
+    {name:'Świetlica wiejska',detail:'Budynek komunalny gminy Wolbórz. 15 kWp (34 panele). Produkcja: 15 750 kWh/rok. Zasilanie oświetlenia, klimatyzacji, projektora. Rachunek za prąd: 0 zł. Nadwyżka sprzedawana do sieci – dochód 3 200 zł/rok. Wzór dla całej gminy!'},
+  ];
+  alert(`📊 ${cases[id].name}\n\n${cases[id].detail}`);
+}
+
+// ============ CONTACT FORM ============
+function submitForm(e){
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = '✅ Wiadomość wysłana!';
+  btn.style.background = '#22c55e';
+  setTimeout(()=>{
+    btn.textContent = '🚀 Wyślij wiadomość';
+    btn.style.background = '';
+  }, 3000);
+}
+
+// ============ EASTER EGG ============
+function easterEgg(){
+  const sun = document.getElementById('easter-sun');
+  sun.style.animation = 'none';
+  sun.style.transform = 'scale(2) rotate(360deg)';
+  setTimeout(()=>{
+    sun.style.transition = 'transform 1s';
+    sun.style.transform = '';
+    setTimeout(()=>sun.style.animation = 'floatBtn 3s ease-in-out infinite', 1000);
+  }, 100);
+
+  // Spawn sun particles
+  for(let i=0;i<8;i++){
+    const p = document.createElement('div');
+    p.textContent = '✨';
+    p.style.cssText = `position:fixed;bottom:2rem;right:2rem;font-size:1rem;pointer-events:none;z-index:200;transition:all 1s;`;
+    document.body.appendChild(p);
+    const angle = (i/8)*Math.PI*2;
+    setTimeout(()=>{
+      p.style.transform = `translate(${Math.cos(angle)*80}px,${Math.sin(angle)*80}px)`;
+      p.style.opacity = '0';
+    }, 50);
+    setTimeout(()=>p.remove(), 1100);
+  }
+}
+
+// ============ CHARGE BAR on scroll ============
+function updateChargeBar(){
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('charge-fill').style.width = pct + '%';
+}
+
+// ============ RANGE SLIDER FILL ============
+document.querySelectorAll('input[type=range]').forEach(slider=>{
+  const update = ()=>{
+    const pct = (slider.value-slider.min)/(slider.max-slider.min)*100;
+    slider.style.setProperty('--pct', pct+'%');
+  };
+  slider.addEventListener('input', update);
+  update();
+});
+
+// ============ DARK MODE TOGGLE ============
+let isDark = false;
+function toggleTheme(){
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('toggle-icon');
+  // Spin animation
+  btn.classList.add('switching');
+  setTimeout(()=>{
+    isDark = !isDark;
+    document.body.classList.toggle('dark', isDark);
+    icon.textContent = isDark ? '🌙' : '☀️';
+    btn.classList.remove('switching');
+    // Persist preference
+    localStorage.setItem('mzurki-theme', isDark ? 'dark' : 'light');
+    // Redraw canvases for dark mode
+    setTimeout(()=>{
+      drawVillageMap();
+      initCharts();
+      if(typeof updateCalc === 'function') updateCalc();
+      if(typeof updateDayUI === 'function') updateDayUI();
+    }, 100);
+  }, 250);
+}
+
+// Load saved theme on start
+(function(){
+  const saved = localStorage.getItem('mzurki-theme');
+  if(saved === 'dark'){
+    isDark = true;
+    document.body.classList.add('dark');
+    const icon = document.getElementById('toggle-icon');
+    if(icon) icon.textContent = '🌙';
+  }
+})();
+
+// ============ RESIZE HANDLER ============
+window.addEventListener('resize', ()=>{
+  drawVillageMap();
+  initCharts();
+  setTimeout(updateCalc, 100);
+});
+
+
+</script>
+</body>
+</html>
